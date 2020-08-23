@@ -12,31 +12,31 @@ public class Home extends javax.swing.JFrame
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        add_btn = new javax.swing.JButton();
+        search_btn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(Home.MAXIMIZED_BOTH);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jButton1.setText("Add");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        add_btn.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        add_btn.setText("Add");
+        add_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                add_btnActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 360, -1, -1));
+        getContentPane().add(add_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 360, -1, -1));
 
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jButton2.setText("Search");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        search_btn.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        search_btn.setText("Search");
+        search_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                search_btnActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 360, -1, -1));
+        getContentPane().add(search_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 360, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/16067961-Jewelry-earrings-on-light-silk-background-Stock-Vector-jewellery.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -9, 1310, 1320));
@@ -44,7 +44,7 @@ public class Home extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void add_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_btnActionPerformed
         
         new Thread(new Runnable()
         {
@@ -55,9 +55,9 @@ public class Home extends javax.swing.JFrame
             }
         }).start();
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_add_btnActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void search_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_btnActionPerformed
         
         new Thread(new Runnable()
         {
@@ -68,7 +68,7 @@ public class Home extends javax.swing.JFrame
             }
         }).start();
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_search_btnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -106,8 +106,8 @@ public class Home extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton add_btn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton search_btn;
     // End of variables declaration//GEN-END:variables
 }

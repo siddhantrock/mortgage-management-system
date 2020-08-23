@@ -7,6 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 public class DisplayRecord extends javax.swing.JFrame 
@@ -64,21 +68,35 @@ public class DisplayRecord extends javax.swing.JFrame
 
         delete_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         delete_btn.setText("Delete");
+        delete_btn.setEnabled(false);
 
         update_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         update_btn.setText("Update");
+        update_btn.setEnabled(false);
 
         data_report_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         data_report_btn.setText("Data report");
+        data_report_btn.setEnabled(false);
 
         back_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         back_btn.setText("Back");
+        back_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                back_btnActionPerformed(evt);
+            }
+        });
 
         Home_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         Home_btn.setText("Home");
+        Home_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Home_btnActionPerformed(evt);
+            }
+        });
 
         Pending_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         Pending_btn.setText("Pending");
+        Pending_btn.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -161,13 +179,73 @@ public class DisplayRecord extends javax.swing.JFrame
                     obj[8] = al.get(i).getDescription();
                 }
                 
-                DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
-                model.addRow(obj);
+                DefaultTableModel model1 = (DefaultTableModel)jTable1.getModel();
+                model1.addRow(obj);
+                
+                ListSelectionModel model = jTable1.getSelectionModel();
+                model.addListSelectionListener(new ListSelectionListener()
+                {
+                    @Override
+                    public void valueChanged(ListSelectionEvent e) 
+                    {
+                        if(! model.isSelectionEmpty())
+                        {
+                            delete_btn.setEnabled(true);
+                            update_btn.setEnabled(true);
+                            data_report_btn.setEnabled(true);
+                            Pending_btn.setEnabled(true);
+                            JOptionPane.showMessageDialog(DisplayRecord.this,model1.getValueAt(model.getMinSelectionIndex(), 1));
+                        }
+                        else
+                        {
+                            delete_btn.setEnabled(false);
+                            update_btn.setEnabled(false);
+                            data_report_btn.setEnabled(false);
+                            Pending_btn.setEnabled(false);
+                        }
+                    }
+                    
+                });
             }
         }).start();
         
     }//GEN-LAST:event_formWindowOpened
 
+    private void back_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_btnActionPerformed
+
+        new Thread(new Runnable()
+        {
+            public void run()
+            {
+                new Searching().setVisible(true);
+                dispose();
+            }
+        }).start();
+        
+    }//GEN-LAST:event_back_btnActionPerformed
+
+    private void Home_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Home_btnActionPerformed
+
+        new Thread(new Runnable()
+        {
+            public void run()
+            {
+                new Home().setVisible(true);
+                dispose();
+            }
+        }).start();
+        
+    }//GEN-LAST:event_Home_btnActionPerformed
+
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize(); //To change body of generated methods, choose Tools | Templates.
+        connect = null;
+        resultset.close();
+    }
+
+    
+    
     /**
      * @param args the command line arguments
      */
