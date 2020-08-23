@@ -57,7 +57,7 @@ public class Connect
                     + "n_silver int , n_total int , date1 char(10) , interest int , g_gold int , g_silver int , rupess int , description char(20))");
             
              st.execute("create table table_" + year + "_1(id int primary key , thing varchar(30) , type char(10) , n_gold int , "
-                    + "n_silver int , n_total int , date1 char(10) , interest int , g_gold int , g_silver int , rupess int , description char(20))");
+                    + "n_silver int , n_total int , date1 char(10) , interest int , g_gold int , g_silver int , rupess int , rupess2 int , date2 char(10) , description char(20))");
              flag=true;
         }
         catch (SQLException ex) 
