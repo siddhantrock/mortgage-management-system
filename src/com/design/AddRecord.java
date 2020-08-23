@@ -5,6 +5,7 @@ import com.database.Connect;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -314,25 +315,34 @@ public class AddRecord extends javax.swing.JFrame
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         
-        connect = new Connect();
-        ResultSet rs = connect.showTables();
-        
-        try 
+        new Thread(new Runnable()
         {
-            while(rs.next())
+            public void run()
             {
-                String table = rs.getString(1);
-                
-                if(table.length() == 10)
+                connect = new Connect();
+                ResultSet rs = connect.showTables();
+                Date obj = new Date();
+                date_dtpicker.setDate(obj);
+        
+                try 
                 {
-                    table_combo.addItem(table);
+                    while(rs.next())
+                    {
+                        String table = rs.getString(1);
+                
+                        if(table.length() == 10)
+                        {
+                            table_combo.addItem(table);
+                        }
+                    }
+                }
+                catch (SQLException ex) 
+                {
+                    Logger.getLogger(AddRecord.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        }
-        catch (SQLException ex) 
-        {
-            Logger.getLogger(AddRecord.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }).start();
+        
         
     }//GEN-LAST:event_formWindowOpened
 
