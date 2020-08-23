@@ -448,6 +448,16 @@ public class AddRecord extends javax.swing.JFrame
                 {
                     JOptionPane.showMessageDialog(AddRecord.this, e.getMessage());
                 }
+                
+                boolean flag = obj.insertThing(connect,table_combo.getItemAt(table_combo.getSelectedIndex()),false);
+                if(flag == true)
+                {
+                    JOptionPane.showMessageDialog(AddRecord.this, "Record inserted successfully");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(AddRecord.this, "Something went wrong please try again later");
+                }
             }
         }).start();
         

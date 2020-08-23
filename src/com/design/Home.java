@@ -59,7 +59,7 @@ public class Home extends javax.swing.JFrame
         {
             public void run()
             {
-                //new AddRecord().setVisible(true);
+                new AddRecord().setVisible(true);
                 dispose();
             }
         }).start();

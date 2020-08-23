@@ -1,5 +1,7 @@
 package com.commodity;
 
+import com.database.Connect;
+
 public class Thing 
 {
     private int id;
@@ -168,6 +170,25 @@ public class Thing
             throw new RuntimeException("Date cannot be empty");
         }
         
+    }
+    
+    public boolean insertThing(Connect connect , String table , boolean description)
+    {
+        boolean flag = false;
+        
+        if(description == false)
+        {
+            flag = connect.addRecord("insert into " + table + "(id,thing,type,n_gold,n_silver,n_total,date1,interest,g_gold,g_silver,rupess) values"
+                + "(" + id + ",'" + thing + "','" + type + "'," + n_gold + "," + n_silver + "," + n_total + ",'" + date + "'," + interest
+                + "," + g_gold + "," + g_silver + "," + rupess + ")");
+        }
+        else if(description == true)
+        {
+            flag = connect.addRecord("insert into " + table + "values"
+                + "(" + id + ",'" + thing + "','" + type + "'," + n_gold + "," + n_silver + "," + n_total + ",'" + date + "'," + interest
+                + "," + g_gold + "," + g_silver + "," + rupess + ",'" + this.description + "')");
+        }
+        return flag;
     }
     
 }

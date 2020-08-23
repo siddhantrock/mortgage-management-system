@@ -33,9 +33,19 @@ public class Connect
     
     
     
-    public boolean addRecord(String table_name)
+    public boolean addRecord(String query)
     {
-        return false;
+        boolean flag = false;
+        try 
+        {
+            st.executeUpdate(query);
+            flag = true;
+        }
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return flag;
     }
     
     public boolean createTable(String year)
