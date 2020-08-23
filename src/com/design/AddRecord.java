@@ -3,6 +3,7 @@ package com.design;
 import com.database.Connect;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -100,6 +101,7 @@ public class AddRecord extends javax.swing.JFrame
         jLabel8.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel8.setText("Enter date");
 
+        date_dtpicker.setDateFormatString("MM/dd/yyyy");
         date_dtpicker.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         date_dtpicker.setMaxSelectableDate(new java.util.Date(253370748694000L));
 
@@ -397,7 +399,8 @@ public class AddRecord extends javax.swing.JFrame
                     JOptionPane.showMessageDialog(AddRecord.this, "Please select valid number of total");
                 }
                 
-                date = date_dtpicker.getDate().toString();
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+                date = sdf.format(date_dtpicker.getDate());
                 JOptionPane.showMessageDialog(AddRecord.this, date);
                 
                 try
