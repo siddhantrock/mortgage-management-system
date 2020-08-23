@@ -101,6 +101,7 @@ public class AddRecord extends javax.swing.JFrame
         jLabel8.setText("Enter date");
 
         date_dtpicker.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        date_dtpicker.setMaxSelectableDate(new java.util.Date(253370748694000L));
 
         jLabel9.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel9.setText("Enter interest");
@@ -132,6 +133,11 @@ public class AddRecord extends javax.swing.JFrame
 
         add_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         add_btn.setText("Add");
+        add_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_btnActionPerformed(evt);
+            }
+        });
 
         home_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         home_btn.setText("Home");
@@ -341,6 +347,98 @@ public class AddRecord extends javax.swing.JFrame
         
         
     }//GEN-LAST:event_home_btnActionPerformed
+
+    private void add_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_btnActionPerformed
+        
+        new Thread(new Runnable()
+        {
+            public void run()
+            {
+                int id,n_gold_,n_silver,n_total,interest,g_gold,g_silver,rupess;
+                String thing,type,date;
+                
+                try
+                {
+                    id = Integer.parseInt(id_txt.getText());
+                }
+                catch(Exception e)
+                {
+                    JOptionPane.showMessageDialog(AddRecord.this, "Please enter valid id");
+                }
+                
+                thing = thing_txt.getText().trim().toUpperCase();
+                
+                type = type_combo.getItemAt(type_combo.getSelectedIndex()).trim().toUpperCase();
+                
+                try
+                {
+                    n_gold_ = Integer.parseInt(n_gold_combo.getItemAt(n_gold_combo.getSelectedIndex()));
+                }
+                catch(Exception e)
+                {
+                    JOptionPane.showMessageDialog(AddRecord.this, "Please select valid number of gold");
+                }
+                
+                try
+                {
+                    n_silver = Integer.parseInt(n_silver_combo.getItemAt(n_silver_combo.getSelectedIndex()));
+                }
+                catch(Exception e)
+                {
+                    JOptionPane.showMessageDialog(AddRecord.this, "Please select valid number of silver");
+                }
+                
+                try
+                {
+                    n_total = Integer.parseInt(n_total_combo.getItemAt(n_total_combo.getSelectedIndex()));
+                }
+                catch(Exception e)
+                {
+                    JOptionPane.showMessageDialog(AddRecord.this, "Please select valid number of total");
+                }
+                
+                date = date_dtpicker.getDate().toString();
+                JOptionPane.showMessageDialog(AddRecord.this, date);
+                
+                try
+                {
+                    interest = Integer.parseInt(interest_txt.getText());
+                }
+                catch(Exception e)
+                {
+                    JOptionPane.showMessageDialog(AddRecord.this, "Please enter valid interest rate");
+                }
+                
+                try
+                {
+                    g_gold = Integer.parseInt(g_gold_txt.getText());
+                }
+                catch(Exception e)
+                {
+                    JOptionPane.showMessageDialog(AddRecord.this, "Please enter valid gross weight of gold");
+                }
+                
+                try
+                {
+                    g_silver = Integer.parseInt(g_silver_txt.getText());
+                }
+                catch(Exception e)
+                {
+                    JOptionPane.showMessageDialog(AddRecord.this, "Please enter valid gross weight of silver");
+                }
+                
+                try
+                {
+                    rupess = Integer.parseInt(rupess_txt.getText());
+                }
+                catch(Exception e)
+                {
+                    JOptionPane.showMessageDialog(AddRecord.this, "Please enter valid rupess");
+                }
+            }
+        }).start();
+        
+    }//GEN-LAST:event_add_btnActionPerformed
 
     @Override
     protected void finalize() throws Throwable {
