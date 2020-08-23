@@ -81,4 +81,18 @@ public class Connect
         }
         return rs;
     }
+    
+    public ResultSet getRecord(String query)
+    {
+        ResultSet rs=null;
+        try 
+        {
+            rs = st.executeQuery(query);
+        }
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return rs;
+    }
 }

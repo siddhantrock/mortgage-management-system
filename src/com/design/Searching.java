@@ -1,10 +1,13 @@
 package com.design;
 
+import com.commodity.Thing;
 import com.database.Connect;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class Searching extends javax.swing.JFrame 
 {
@@ -57,10 +60,16 @@ public class Searching extends javax.swing.JFrame
         jLabel4.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel4.setText("Enter date");
 
+        date_dtpicker.setDateFormatString("MM/dd/yyyy");
         date_dtpicker.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
 
         search_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         search_btn.setText("Search");
+        search_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                search_btnActionPerformed(evt);
+            }
+        });
 
         home_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         home_btn.setText("Home");
@@ -86,9 +95,9 @@ public class Searching extends javax.swing.JFrame
                         .addGap(390, 390, 390)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(id_txt)
-                            .addComponent(table_combo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(thing_txt)
-                            .addComponent(date_dtpicker, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)))
+                            .addComponent(date_dtpicker, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                            .addComponent(table_combo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(371, 371, 371)
                         .addComponent(search_btn)
@@ -102,7 +111,7 @@ public class Searching extends javax.swing.JFrame
                 .addGap(69, 69, 69)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(table_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(table_combo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(76, 76, 76)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
@@ -139,6 +148,15 @@ public class Searching extends javax.swing.JFrame
         
     }//GEN-LAST:event_home_btnActionPerformed
 
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize(); //To change body of generated methods, choose Tools | Templates.
+        connect = null;
+    }
+
+    
+    
+    
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 
         new Thread(new Runnable()
@@ -163,6 +181,82 @@ public class Searching extends javax.swing.JFrame
         }).start();
         
     }//GEN-LAST:event_formWindowOpened
+
+    private void search_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_btnActionPerformed
+
+        new Thread(new Runnable()
+        {
+            public void run()
+            {
+                int id;
+                String thing,date="";
+        
+                try
+                {
+                    id = Integer.parseInt(id_txt.getText());
+                }
+                catch(Exception e)
+                {
+                    JOptionPane.showMessageDialog(Searching.this, "Please enter valid id");
+                    return;
+                }
+                
+                thing = thing_txt.getText().trim().toUpperCase();
+                
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+                try
+                {
+                    date = sdf.format(date_dtpicker.getDate());
+                }
+                catch(NullPointerException e)
+                {
+                    
+                }
+                
+                Thing obj=null;
+                
+                if(thing.length() == 0 && date.length() == 0)
+                {
+                    obj = new Thing(id);
+                }
+                else if(thing.length() != 0 && date.length() == 0)
+                {
+                    obj = new Thing(id,thing);
+                }
+                
+                else if(thing.length() == 0 && date.length() != 0)
+                {
+                    obj = new Thing(id,date,false);
+                }
+                
+                else if(thing.length() != 0 && date.length() != 0)
+                {
+                    obj = new Thing(id,thing,date);
+                }
+                
+                try 
+                {
+                    obj.searchValidate();
+                }
+                catch (Exception ex) 
+                {
+                    JOptionPane.showMessageDialog(Searching.this, ex.getMessage());
+                    return;
+                }
+                
+                ResultSet rs = obj.retriveThing(connect, table_combo.getItemAt(table_combo.getSelectedIndex()),false,false);
+                try {
+                    if(rs.next())
+                    {
+                        JOptionPane.showMessageDialog(Searching.this, rs.getString(2));
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(Searching.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }).start();
+        
+    }//GEN-LAST:event_search_btnActionPerformed
 
     /**
      * @param args the command line arguments

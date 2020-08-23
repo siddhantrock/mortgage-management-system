@@ -377,6 +377,7 @@ public class AddRecord extends javax.swing.JFrame
                 catch(Exception e)
                 {
                     JOptionPane.showMessageDialog(AddRecord.this, "Please enter valid id");
+                    return;
                 }
                 
                 thing = thing_txt.getText().trim().toUpperCase();
@@ -390,6 +391,7 @@ public class AddRecord extends javax.swing.JFrame
                 catch(Exception e)
                 {
                     JOptionPane.showMessageDialog(AddRecord.this, "Please select valid number of gold");
+                    return;
                 }
                 
                 try
@@ -399,6 +401,7 @@ public class AddRecord extends javax.swing.JFrame
                 catch(Exception e)
                 {
                     JOptionPane.showMessageDialog(AddRecord.this, "Please select valid number of silver");
+                    return;
                 }
                 
                 try
@@ -408,6 +411,7 @@ public class AddRecord extends javax.swing.JFrame
                 catch(Exception e)
                 {
                     JOptionPane.showMessageDialog(AddRecord.this, "Please select valid number of total");
+                    return;
                 }
                 
                 SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
@@ -420,6 +424,7 @@ public class AddRecord extends javax.swing.JFrame
                 catch(Exception e)
                 {
                     JOptionPane.showMessageDialog(AddRecord.this, "Please enter valid interest rate");
+                    return;
                 }
                 
                 try
@@ -429,6 +434,7 @@ public class AddRecord extends javax.swing.JFrame
                 catch(Exception e)
                 {
                     JOptionPane.showMessageDialog(AddRecord.this, "Please enter valid gross weight of gold");
+                    return;
                 }
                 
                 try
@@ -438,6 +444,7 @@ public class AddRecord extends javax.swing.JFrame
                 catch(Exception e)
                 {
                     JOptionPane.showMessageDialog(AddRecord.this, "Please enter valid gross weight of silver");
+                    return;
                 }
                 
                 try
@@ -447,6 +454,7 @@ public class AddRecord extends javax.swing.JFrame
                 catch(Exception e)
                 {
                     JOptionPane.showMessageDialog(AddRecord.this, "Please enter valid rupess");
+                    return;
                 }
                 
                 Thing obj = new Thing(id,thing,type,n_gold,n_silver,n_total,date,interest,g_gold,g_silver,rupess);
@@ -457,6 +465,7 @@ public class AddRecord extends javax.swing.JFrame
                 catch(Exception e)
                 {
                     JOptionPane.showMessageDialog(AddRecord.this, e.getMessage());
+                    return;
                 }
                 
                 boolean flag = obj.insertThing(connect,table_combo.getItemAt(table_combo.getSelectedIndex()),false);

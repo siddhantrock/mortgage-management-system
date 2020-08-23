@@ -1,6 +1,7 @@
 package com.commodity;
 
 import com.database.Connect;
+import java.sql.ResultSet;
 
 public class Thing 
 {
@@ -45,6 +46,29 @@ public class Thing
         this.g_silver = g_silver;
         this.rupess = rupess;
     }
+
+    public Thing(int id, String thing, String date) {
+        this.id = id;
+        this.thing = thing;
+        this.date = date;
+    }
+
+    public Thing(int id) {
+        this.id = id;
+    }
+
+    public Thing(int id, String thing) {
+        this.id = id;
+        this.thing = thing;
+    }
+    
+    public Thing(int id , String date,boolean flag)
+    {
+        this.id = id;
+        this.date = date;
+    }
+    
+    
 
     public int getId() {
         return id;
@@ -172,6 +196,15 @@ public class Thing
         
     }
     
+    public void searchValidate()throws Exception
+    {
+        if(id==0)
+        {
+            throw new RuntimeException("ID cannot be zero or empty");
+        }
+        
+    }
+    
     public boolean insertThing(Connect connect , String table , boolean description)
     {
         boolean flag = false;
@@ -191,4 +224,29 @@ public class Thing
         return flag;
     }
     
+    public ResultSet retriveThing(Connect connect , String table,boolean thing , boolean date)
+    {
+        ResultSet rs = null;
+        
+        if(thing == false && date == false)
+        {
+            rs = connect.getRecord("select * from " + table + " where id = " + id);
+        }
+        
+        else if(thing == true)
+        {
+            rs = connect.getRecord("select * from " + table + " where id = " + id + " and thing = '" + this.thing + "'");
+        }
+                
+        else if(date == true)
+        {
+            rs = connect.getRecord("select * from " + table + " where id = " + id + " and date = '" + this.date + "'");
+        }
+                
+        else if(thing == true && date == true)
+        {
+            rs = connect.getRecord("select * from " + table + " where id = " + id + " and thing = '" + this.thing + "' and date = '" + this.date + "'");
+        }
+        return rs;
+    }
 }
