@@ -1,5 +1,6 @@
 package com.design;
 
+import com.commodity.Thing;
 import com.database.Connect;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -356,7 +357,7 @@ public class AddRecord extends javax.swing.JFrame
         {
             public void run()
             {
-                int id,n_gold_,n_silver,n_total,interest,g_gold,g_silver,rupess;
+                int id=0,n_gold=0,n_silver=0,n_total=0,interest=0,g_gold=0,g_silver=0,rupess=0;
                 String thing,type,date;
                 
                 try
@@ -374,7 +375,7 @@ public class AddRecord extends javax.swing.JFrame
                 
                 try
                 {
-                    n_gold_ = Integer.parseInt(n_gold_combo.getItemAt(n_gold_combo.getSelectedIndex()));
+                    n_gold = Integer.parseInt(n_gold_combo.getItemAt(n_gold_combo.getSelectedIndex()));
                 }
                 catch(Exception e)
                 {
@@ -401,7 +402,6 @@ public class AddRecord extends javax.swing.JFrame
                 
                 SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
                 date = sdf.format(date_dtpicker.getDate());
-                JOptionPane.showMessageDialog(AddRecord.this, date);
                 
                 try
                 {
@@ -437,6 +437,16 @@ public class AddRecord extends javax.swing.JFrame
                 catch(Exception e)
                 {
                     JOptionPane.showMessageDialog(AddRecord.this, "Please enter valid rupess");
+                }
+                
+                Thing obj = new Thing(id,thing,type,n_gold,n_silver,n_total,date,interest,g_gold,g_silver,rupess);
+                try
+                {
+                    obj.validate();
+                }
+                catch(Exception e)
+                {
+                    JOptionPane.showMessageDialog(AddRecord.this, e.getMessage());
                 }
             }
         }).start();

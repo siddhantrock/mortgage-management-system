@@ -158,6 +158,11 @@ public class Thing
             throw new RuntimeException("Type cannot be empty");
         }
         
+        if(n_total == 0)
+        {
+            throw new RuntimeException("Total cannot be zero");
+        }
+        
         if(date.length() == 0)
         {
             throw new RuntimeException("Date cannot be empty");
