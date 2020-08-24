@@ -114,6 +114,11 @@ public class DisplayRecord extends javax.swing.JFrame
         Pending_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         Pending_btn.setText("Pending");
         Pending_btn.setEnabled(false);
+        Pending_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Pending_btnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -211,12 +216,16 @@ public class DisplayRecord extends javax.swing.JFrame
                     {
                         if(! model.isSelectionEmpty())
                         {
-                            delete_btn.setEnabled(true);
-                            update_btn.setEnabled(true);
-                            data_report_btn.setEnabled(true);
-                            Pending_btn.setEnabled(true);
+                            if(table.length() == 10)
+                            {
+                                delete_btn.setEnabled(true);
+                                update_btn.setEnabled(true);
+                                data_report_btn.setEnabled(true);
+                                Pending_btn.setEnabled(true);
+                            }
                             id = Integer.parseInt(model1.getValueAt(model.getMinSelectionIndex(),0)+"");
                             row = model.getMinSelectionIndex();
+                            
                         }
                         else
                         {
@@ -285,6 +294,27 @@ public class DisplayRecord extends javax.swing.JFrame
         }
         }).start();
     }//GEN-LAST:event_delete_btnActionPerformed
+
+    private void Pending_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Pending_btnActionPerformed
+
+        new Thread(new Runnable()
+        {
+            public void run()
+            {
+                boolean flag = connect.pendingRecord(table, id);
+                if(flag == true)
+                {
+                    JOptionPane.showMessageDialog(DisplayRecord.this, "Data inerted into pending");
+                    if(row != -1)
+                    {
+                        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+                        model.removeRow(row);
+                    }
+                }
+            }
+        }).start();
+        
+    }//GEN-LAST:event_Pending_btnActionPerformed
 
     @Override
     protected void finalize() throws Throwable {

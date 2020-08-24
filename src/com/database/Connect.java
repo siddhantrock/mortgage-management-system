@@ -53,11 +53,11 @@ public class Connect
         boolean flag=false;
         try 
         {
-            st.execute("create table table_" + year + "(id int primary key , thing varchar(30) , type char(10) , n_gold int , "
-                    + "n_silver int , n_total int , date1 char(10) , interest int , g_gold int , g_silver int , rupess int , description char(20))");
+            st.execute("create table table_" + year + "(id int primary key , thing varchar(100) , type char(10) , n_gold int , "
+                    + "n_silver int , n_total int , date1 char(10) , interest int , g_gold int , g_silver int , rupess int , description text)");
             
-             st.execute("create table table_" + year + "_1(id int primary key , thing varchar(30) , type char(10) , n_gold int , "
-                    + "n_silver int , n_total int , date1 char(10) , interest int , g_gold int , g_silver int , rupess int , rupess2 int , date2 char(10) , description char(20))");
+             st.execute("create table table_" + year + "_1(id int primary key , thing varchar(100) , type char(10) , n_gold int , "
+                    + "n_silver int , n_total int , date1 char(10) , interest int , g_gold int , g_silver int , rupess int , rupess2 int , date2 char(10) , description text)");
              flag=true;
         }
         catch (SQLException ex) 
@@ -112,6 +112,24 @@ public class Connect
             
             st.execute("delete from " + table + " where id = " + id);
             
+            flag = true;
+        }
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return flag;
+    }
+    
+    public boolean pendingRecord(String table , int id)
+    {
+        boolean flag=false;
+        
+        try 
+        {
+            st.executeUpdate("insert into pending select * from " + table + " where id = " + id);
+            st.execute("delete from " + table + " where id = " + id);
             flag = true;
         }
         catch (SQLException ex) 

@@ -170,7 +170,12 @@ public class Searching extends javax.swing.JFrame
                 {
                     while(rs.next())
                     {
-                        table_combo.addItem(rs.getString(1));
+                        String table = rs.getString(1);
+                
+                        if(table.length() >= 10)
+                        {
+                            table_combo.addItem(table);
+                        }
                     }
                 }
                 catch (SQLException ex) 
