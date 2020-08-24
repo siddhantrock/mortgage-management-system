@@ -251,6 +251,13 @@ public class Thing
         return rs;
     }
     
+    public static boolean removeThing(Connect connect , String table , int id , int rupess , String date)
+    {
+        boolean flag = connect.deleteRecord(table, id , rupess , date);
+        
+        return flag;
+    }
+    
     public static String[] dateDifference(String date , int rate , int rupess)
     {
         int total_days_difference , days , months = 0 , years = 0 , start_month , start_year;

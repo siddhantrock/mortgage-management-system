@@ -248,7 +248,7 @@ public class Searching extends javax.swing.JFrame
                 
                 DisplayRecord dr = new DisplayRecord();
                 dr.setVisible(true);
-                dr.setResultSet(rs);
+                dr.setResultSet(rs,table_combo.getItemAt(table_combo.getSelectedIndex()));
                 dispose();
             }
         }).start();

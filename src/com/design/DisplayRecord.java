@@ -4,7 +4,9 @@ import com.commodity.Thing;
 import com.database.Connect;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -17,14 +19,18 @@ public class DisplayRecord extends javax.swing.JFrame
 {
     Connect connect;
     ResultSet resultset;
+    int id;
+    String table;
+    
     public DisplayRecord() 
     {
         initComponents();
     }
     
-    public void setResultSet(ResultSet rs)
+    public void setResultSet(ResultSet rs , String table)
     {
         resultset = rs;
+        this.table = table;
     }
 
     @SuppressWarnings("unchecked")
@@ -68,10 +74,18 @@ public class DisplayRecord extends javax.swing.JFrame
         jTable1.setRowHeight(28);
         jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(100);
+        }
 
         delete_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         delete_btn.setText("Delete");
         delete_btn.setEnabled(false);
+        delete_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delete_btnActionPerformed(evt);
+            }
+        });
 
         update_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         update_btn.setText("Update");
@@ -201,7 +215,7 @@ public class DisplayRecord extends javax.swing.JFrame
                             update_btn.setEnabled(true);
                             data_report_btn.setEnabled(true);
                             Pending_btn.setEnabled(true);
-                            JOptionPane.showMessageDialog(DisplayRecord.this,model1.getValueAt(model.getMinSelectionIndex(), 1));
+                            id = Integer.parseInt(model1.getValueAt(model.getMinSelectionIndex(),0)+"");
                         }
                         else
                         {
@@ -243,6 +257,23 @@ public class DisplayRecord extends javax.swing.JFrame
         }).start();
         
     }//GEN-LAST:event_Home_btnActionPerformed
+
+    private void delete_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_btnActionPerformed
+
+        int rupess = Integer.parseInt(JOptionPane.showInputDialog(DisplayRecord.this, "Please enter rupess"));
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        String date = sdf.format(new Date());
+        boolean flag = Thing.removeThing(connect, table, id, rupess, date);
+        if(flag == true)
+        {
+            JOptionPane.showMessageDialog(DisplayRecord.this, "Deletion Successfull");
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(DisplayRecord.this, "Something went wrong please try again later");
+        }
+        
+    }//GEN-LAST:event_delete_btnActionPerformed
 
     @Override
     protected void finalize() throws Throwable {
