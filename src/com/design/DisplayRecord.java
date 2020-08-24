@@ -20,7 +20,7 @@ public class DisplayRecord extends javax.swing.JFrame
     Connect connect;
     ResultSet resultset;
     int id,row=-1;
-    String table;
+    String table,pending_year=null;
     
     public DisplayRecord() 
     {
@@ -223,8 +223,16 @@ public class DisplayRecord extends javax.swing.JFrame
                                 data_report_btn.setEnabled(true);
                                 Pending_btn.setEnabled(true);
                             }
+                            else if(table.length() == 7)
+                            {
+                                delete_btn.setEnabled(true);
+                                update_btn.setEnabled(true);
+                                data_report_btn.setEnabled(true);
+                            }
+                                    
                             id = Integer.parseInt(model1.getValueAt(model.getMinSelectionIndex(),0)+"");
                             row = model.getMinSelectionIndex();
+                            pending_year = model1.getValueAt(model.getMinSelectionIndex(),2)+"";
                             
                         }
                         else
@@ -274,10 +282,20 @@ public class DisplayRecord extends javax.swing.JFrame
         {
             public void run()
         {
+            boolean flag=false;
             int rupess = Integer.parseInt(JOptionPane.showInputDialog(DisplayRecord.this, "Please enter rupess"));
             SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
             String date = sdf.format(new Date());
-            boolean flag = Thing.removeThing(connect, table, id, rupess, date);
+            
+            if(table.length() == 10)
+            {
+               flag = Thing.removeThing(connect, table, id, rupess, date);
+            }
+            else if(table.length() == 7)
+            {
+                flag = connect.deletePendingRecord(pending_year,id,rupess,date);
+            }
+                 
             if(flag == true)
             {
                 JOptionPane.showMessageDialog(DisplayRecord.this, "Deletion Successfull");
@@ -290,6 +308,7 @@ public class DisplayRecord extends javax.swing.JFrame
             else
             {
                 JOptionPane.showMessageDialog(DisplayRecord.this, "Something went wrong please try again later");
+                return;
             }
         }
         }).start();

@@ -139,4 +139,48 @@ public class Connect
         
         return flag;
     }
+    
+    public ResultSet getPendingRecord()
+    {   
+        ResultSet rs = null;
+        
+        try 
+        {
+            rs = st.executeQuery("select * from pending");
+        }
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return rs;
+    }
+    
+    public boolean deletePendingRecord(String pending_year , int id , int rupess , String date)
+    {
+        boolean flag = false;
+        String table = "table_" + pending_year.substring(6) + "_1";
+        
+        try 
+        {
+            ResultSet rs = st.executeQuery("select * from pending" + " where id = " + id);
+            
+            rs.next();
+            
+            st.executeUpdate("insert into " + table + " values(" + rs.getInt("id") + ",'" + rs.getString("thing") + "','" + rs.getString("type")
+            + "'," + rs.getInt("n_gold") + "," + rs.getInt("n_silver") + "," + rs.getInt("n_total") + ",'" + rs.getString("date1")
+            + "'," + rs.getInt("interest") + "," + rs.getInt("g_gold") + "," + rs.getInt("g_silver") + "," + rs.getInt("rupess")
+            + "," + rupess + ",'" + date + "','" + rs.getString("description") + "')");
+            
+            st.execute("delete from pending" + " where id = " + id);
+            
+            flag = true;
+        }
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return flag;
+    }
 }

@@ -33,6 +33,7 @@ public class Searching extends javax.swing.JFrame
         date_dtpicker = new com.toedter.calendar.JDateChooser();
         search_btn = new javax.swing.JButton();
         home_btn = new javax.swing.JButton();
+        pending_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(Searching.MAXIMIZED_BOTH);
@@ -79,6 +80,14 @@ public class Searching extends javax.swing.JFrame
             }
         });
 
+        pending_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        pending_btn.setText("Pending");
+        pending_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pending_btnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -102,8 +111,10 @@ public class Searching extends javax.swing.JFrame
                         .addGap(371, 371, 371)
                         .addComponent(search_btn)
                         .addGap(143, 143, 143)
-                        .addComponent(home_btn)))
-                .addContainerGap(297, Short.MAX_VALUE))
+                        .addComponent(home_btn)
+                        .addGap(129, 129, 129)
+                        .addComponent(pending_btn)))
+                .addContainerGap(294, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,7 +138,8 @@ public class Searching extends javax.swing.JFrame
                 .addGap(69, 69, 69)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(search_btn)
-                    .addComponent(home_btn))
+                    .addComponent(home_btn)
+                    .addComponent(pending_btn))
                 .addContainerGap(68, Short.MAX_VALUE))
         );
 
@@ -277,6 +289,40 @@ public class Searching extends javax.swing.JFrame
         
     }//GEN-LAST:event_search_btnActionPerformed
 
+    private void pending_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pending_btnActionPerformed
+
+        new Thread(new Runnable()
+        {
+            public void run()
+            {
+                ResultSet rs = connect.getPendingRecord();
+               
+                try 
+                {
+                    if(rs.next())
+                    {
+                        
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(Searching.this, "No record found");
+                        return;
+                    }
+                }
+                catch (SQLException ex) 
+                {
+                    Logger.getLogger(Searching.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                DisplayRecord dr = new DisplayRecord();
+                dr.setVisible(true);
+                dr.setResultSet(rs,"pending");
+                dispose();
+            }
+        }).start();
+        
+    }//GEN-LAST:event_pending_btnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -320,6 +366,7 @@ public class Searching extends javax.swing.JFrame
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton pending_btn;
     private javax.swing.JButton search_btn;
     private javax.swing.JComboBox<String> table_combo;
     private javax.swing.JTextField thing_txt;
