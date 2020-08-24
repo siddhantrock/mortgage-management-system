@@ -19,7 +19,7 @@ public class DisplayRecord extends javax.swing.JFrame
 {
     Connect connect;
     ResultSet resultset;
-    int id;
+    int id,row=-1;
     String table;
     
     public DisplayRecord() 
@@ -168,14 +168,14 @@ public class DisplayRecord extends javax.swing.JFrame
                 
                 try 
                 {
-                    while(resultset.next())
+                    do
                     {
                         Thing thing = new Thing(resultset.getInt("id"),resultset.getString("thing"),resultset.getString("type"),
                                 resultset.getInt("n_gold"),resultset.getInt("n_silver"),resultset.getInt("n_total"),
                                 resultset.getString("date1"),resultset.getInt("interest"),resultset.getInt("g_gold"),
                                 resultset.getInt("g_silver"),resultset.getInt("rupess"),resultset.getString("description"));
                         al.add(thing);
-                    }
+                    }while(resultset.next());
                 }
                 catch (SQLException ex) 
                 {
@@ -216,6 +216,7 @@ public class DisplayRecord extends javax.swing.JFrame
                             data_report_btn.setEnabled(true);
                             Pending_btn.setEnabled(true);
                             id = Integer.parseInt(model1.getValueAt(model.getMinSelectionIndex(),0)+"");
+                            row = model.getMinSelectionIndex();
                         }
                         else
                         {
@@ -260,19 +261,29 @@ public class DisplayRecord extends javax.swing.JFrame
 
     private void delete_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_btnActionPerformed
 
-        int rupess = Integer.parseInt(JOptionPane.showInputDialog(DisplayRecord.this, "Please enter rupess"));
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-        String date = sdf.format(new Date());
-        boolean flag = Thing.removeThing(connect, table, id, rupess, date);
-        if(flag == true)
+        new Thread(new Runnable()
         {
-            JOptionPane.showMessageDialog(DisplayRecord.this, "Deletion Successfull");
-        }
-        else
+            public void run()
         {
-            JOptionPane.showMessageDialog(DisplayRecord.this, "Something went wrong please try again later");
+            int rupess = Integer.parseInt(JOptionPane.showInputDialog(DisplayRecord.this, "Please enter rupess"));
+            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+            String date = sdf.format(new Date());
+            boolean flag = Thing.removeThing(connect, table, id, rupess, date);
+            if(flag == true)
+            {
+                JOptionPane.showMessageDialog(DisplayRecord.this, "Deletion Successfull");
+                if(row != -1)
+                {
+                    DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+                    model.removeRow(row);
+                }
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(DisplayRecord.this, "Something went wrong please try again later");
+            }
         }
-        
+        }).start();
     }//GEN-LAST:event_delete_btnActionPerformed
 
     @Override

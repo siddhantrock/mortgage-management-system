@@ -246,6 +246,23 @@ public class Searching extends javax.swing.JFrame
                 
                 ResultSet rs = obj.retriveThing(connect, table_combo.getItemAt(table_combo.getSelectedIndex()),false,false);
                 
+                try 
+                {
+                    if(rs.next())
+                    {
+                        
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(Searching.this, "No record found");
+                        return;
+                    }
+                }
+                catch (SQLException ex) 
+                {
+                    Logger.getLogger(Searching.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
                 DisplayRecord dr = new DisplayRecord();
                 dr.setVisible(true);
                 dr.setResultSet(rs,table_combo.getItemAt(table_combo.getSelectedIndex()));

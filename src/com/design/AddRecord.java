@@ -308,6 +308,7 @@ public class AddRecord extends javax.swing.JFrame
                 {
                     JOptionPane.showMessageDialog(AddRecord.this, "Something went wrong please try again later");
                 }
+                new Home().setVisible(true);
                 dispose();
             }
         }).start();
@@ -479,6 +480,7 @@ public class AddRecord extends javax.swing.JFrame
                     JOptionPane.showMessageDialog(AddRecord.this, "Something went wrong please try again later");
                 }
                 
+                new Home().setVisible(true);
                 dispose();
             }
         }).start();
