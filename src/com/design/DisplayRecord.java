@@ -48,6 +48,7 @@ public class DisplayRecord extends javax.swing.JFrame
             }
         });
 
+        jTable1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -57,13 +58,15 @@ public class DisplayRecord extends javax.swing.JFrame
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, true, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setRowHeight(28);
+        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jTable1);
 
         delete_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
@@ -104,21 +107,22 @@ public class DisplayRecord extends javax.swing.JFrame
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(delete_btn)
-                        .addGap(89, 89, 89)
-                        .addComponent(update_btn)
-                        .addGap(104, 104, 104)
-                        .addComponent(data_report_btn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(back_btn)
-                        .addGap(124, 124, 124)
-                        .addComponent(Home_btn)
-                        .addGap(120, 120, 120)
-                        .addComponent(Pending_btn))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(delete_btn)
+                .addGap(89, 89, 89)
+                .addComponent(update_btn)
+                .addGap(104, 104, 104)
+                .addComponent(data_report_btn)
+                .addGap(122, 122, 122)
+                .addComponent(back_btn)
+                .addGap(124, 124, 124)
+                .addComponent(Home_btn)
+                .addGap(120, 120, 120)
+                .addComponent(Pending_btn)
                 .addContainerGap(64, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,15 +171,18 @@ public class DisplayRecord extends javax.swing.JFrame
                 Object[] obj = new Object[9];
                 
                 for(int i=0;i<al.size();i++)
-                {
+                {   
                     obj[0] = al.get(i).getId();
                     obj[1] = al.get(i).getThing();
                     obj[2] = al.get(i).getDate();
                     obj[3] = al.get(i).getRupess();
                     obj[4] = al.get(i).getInterest();
-                    obj[5] = 0;
-                    obj[6] = 0;
-                    obj[7] = 0;
+                    
+                    String data[] = Thing.dateDifference(al.get(i).getDate(), al.get(i).getInterest(), al.get(i).getRupess());
+                    
+                    obj[5] = data[0];
+                    obj[6] = data[1];
+                    obj[7] = Integer.parseInt(data[1]) + al.get(i).getRupess();
                     obj[8] = al.get(i).getDescription();
                 }
                 

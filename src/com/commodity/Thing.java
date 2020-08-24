@@ -2,6 +2,7 @@ package com.commodity;
 
 import com.database.Connect;
 import java.sql.ResultSet;
+import java.util.Date;
 
 public class Thing 
 {
@@ -248,5 +249,144 @@ public class Thing
             rs = connect.getRecord("select * from " + table + " where id = " + id + " and thing = '" + this.thing + "' and date = '" + this.date + "'");
         }
         return rs;
+    }
+    
+    public static String[] dateDifference(String date , int rate , int rupess)
+    {
+        int total_days_difference , days , months = 0 , years = 0 , start_month , start_year;
+        int interest=0,si;
+        String date_difference_string = "";
+        String data[] = new String[2];
+        
+        total_days_difference = (int)((new Date().getTime() - new Date(date).getTime())/(1000*60*60*24));
+        start_month = Integer.parseInt(date.substring(0, 2));
+        start_year = Integer.parseInt(date.substring(6));
+        
+        while(total_days_difference >= 28)
+        {
+            if((start_month == 1 || start_month == 3 || start_month == 5 || start_month == 7 || start_month == 8 || start_month == 10 || start_month == 12) && total_days_difference >=31)
+            {
+                months++;
+                total_days_difference -= 31;
+            }
+            else if((start_month == 4 || start_month == 6 || start_month == 9 || start_month == 11) && total_days_difference >= 30)
+            {
+                months++;
+                total_days_difference -= 30;
+            }
+            else if(start_month == 2)
+            {
+                if(start_year % 400 == 0)
+                {
+                    months++;
+                    total_days_difference -= 29;
+                }
+                else if(start_month % 100 == 0)
+                {
+                    months++;
+                    total_days_difference -= 29;
+                }
+                else if(start_month % 4 == 0)
+                {
+                    months++;
+                    total_days_difference -= 29;
+                }
+                else
+                {
+                    months++;
+                    total_days_difference -= 28;
+                }
+            }
+            
+            start_month++;
+            
+            if(start_month == 13)
+            {
+                start_month = 1;
+                start_year++;
+            }
+        }
+        
+        days = Math.abs(total_days_difference);
+        
+        if(months == 0 && days != 0)
+        {
+            months = 1;
+            days = 0;
+        }
+        
+        if(months % 12 == 0 &&  days != 0)
+        {
+            months++;
+            days = 0;
+        }
+        
+        if(months <=12)
+        {
+            si = (rupess * months * rate)/100;
+            interest = si;
+            date_difference_string = months + " month";
+        
+        
+            if(days != 0)
+            {
+                si = (((rupess * 1 * rate)/100)/30)*days;
+                interest = interest + si;
+            }
+        
+            if(months !=0 && days != 0)
+            {
+                date_difference_string = months + " Month " + days + "day";
+            }
+        }
+        else if(months >12)
+        {
+            int temp = months;
+            int year_month = 0;
+            
+            while(temp > 0)
+            {
+                if(temp > 12)
+                {
+                    temp = temp/12;
+                    years = temp;
+                    
+                }
+                else
+                {
+                    year_month = months - years*12;
+                    temp--;
+                }
+            }
+            date_difference_string = years + " year";
+            interest = 0;
+            
+            while(years > 0)
+            {
+                si = (rupess * rate * 12)/100;
+                rupess = rupess + si;
+                interest = interest + si;
+                years--;
+            }
+            
+            if(months != 0)
+            {
+                si = (rupess * rate * year_month)/100;
+                interest = interest + si;
+                date_difference_string = years + " year " + months + "month";
+            }
+            
+            if(days != 0)
+            {
+                si = (((rupess * rate * 1)/100)/30)*days;
+                interest = interest + si;
+                date_difference_string = years + " year " + months + "month " + days + "day";
+            }
+        }
+        
+        data[0] = date_difference_string;
+        data[1] = interest + "";
+        
+        return data;
     }
 }
