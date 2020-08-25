@@ -13,13 +13,13 @@ public class Thing
     private int n_silver;
     private int n_total;
     private String date;
-    private int interest;
-    private int g_gold;
-    private int g_silver;
+    private float interest;
+    private float g_gold;
+    private float g_silver;
     private int rupess;
     private String description;
 
-    public Thing(int id, String thing, String type, int n_gold, int n_silver, int n_total, String date, int interest, int g_gold, int g_silver, int rupess, String description) {
+    public Thing(int id, String thing, String type, int n_gold, int n_silver, int n_total, String date, float interest, float g_gold, float g_silver, int rupess, String description) {
         this.id = id;
         this.thing = thing;
         this.type = type;
@@ -34,7 +34,7 @@ public class Thing
         this.description = description;
     }
 
-    public Thing(int id, String thing, String type, int n_gold, int n_silver, int n_total, String date, int interest, int g_gold, int g_silver, int rupess) {
+    public Thing(int id, String thing, String type, int n_gold, int n_silver, int n_total, String date, float interest, float g_gold, float g_silver, int rupess) {
         this.id = id;
         this.thing = thing;
         this.type = type;
@@ -127,27 +127,27 @@ public class Thing
         this.date = date;
     }
 
-    public int getInterest() {
+    public float getInterest() {
         return interest;
     }
 
-    public void setInterest(int interest) {
+    public void setInterest(float interest) {
         this.interest = interest;
     }
 
-    public int getG_gold() {
+    public float getG_gold() {
         return g_gold;
     }
 
-    public void setG_gold(int g_gold) {
+    public void setG_gold(float g_gold) {
         this.g_gold = g_gold;
     }
 
-    public int getG_silver() {
+    public float getG_silver() {
         return g_silver;
     }
 
-    public void setG_silver(int g_silver) {
+    public void setG_silver(float g_silver) {
         this.g_silver = g_silver;
     }
 
@@ -258,10 +258,10 @@ public class Thing
         return flag;
     }
     
-    public static String[] dateDifference(String date , int rate , int rupess)
+    public static String[] dateDifference(String date , float rate , int rupess)
     {
         int total_days_difference , days , months = 0 , years = 0 , start_month , start_year;
-        int interest=0,si;
+        float interest=0,si;
         String date_difference_string = "";
         String data[] = new String[2];
         
@@ -331,14 +331,14 @@ public class Thing
         if(months <=12)
         {
             si = (rupess * months * rate)/100;
-            interest = si;
+            interest = Math.round(si);
             date_difference_string = months + " month";
         
         
             if(days != 0)
             {
                 si = (((rupess * 1 * rate)/100)/30)*days;
-                interest = interest + si;
+                interest = Math.round(interest + si);
             }
         
             if(months !=0 && days != 0)
@@ -350,6 +350,7 @@ public class Thing
         {
             int temp = months;
             int year_month = 0;
+            int year_temp = 0;
             
             while(temp > 0)
             {
@@ -357,6 +358,7 @@ public class Thing
                 {
                     temp = temp/12;
                     years = temp;
+                    year_temp = temp;
                     
                 }
                 else
@@ -368,31 +370,31 @@ public class Thing
             date_difference_string = years + " year";
             interest = 0;
             
-            while(years > 0)
+            while(year_temp > 0)
             {
                 si = (rupess * rate * 12)/100;
-                rupess = rupess + si;
-                interest = interest + si;
-                years--;
+                rupess = rupess + Math.round(si);
+                interest = Math.round(interest + si);
+                year_temp--;
             }
             
-            if(months != 0)
+            if(year_month != 0)
             {
                 si = (rupess * rate * year_month)/100;
-                interest = interest + si;
-                date_difference_string = years + " year " + months + "month";
+                interest = Math.round(interest + si);
+                date_difference_string = years + " year " + year_month + "month";
             }
             
             if(days != 0)
             {
                 si = (((rupess * rate * 1)/100)/30)*days;
-                interest = interest + si;
-                date_difference_string = years + " year " + months + "month " + days + "day";
+                interest = Math.round(interest + si);
+                date_difference_string = years + " year " + year_month + "month " + days + "day";
             }
         }
         
         data[0] = date_difference_string;
-        data[1] = interest + "";
+        data[1] = (int)interest + "";
         
         return data;
     }

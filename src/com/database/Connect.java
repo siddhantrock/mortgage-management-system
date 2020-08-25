@@ -45,10 +45,10 @@ public class Connect
         try 
         {
             st.execute("create table table_" + year + "(id int primary key , thing varchar(100) , type char(10) , n_gold int , "
-                    + "n_silver int , n_total int , date1 char(10) , interest int , g_gold int , g_silver int , rupess int , description text)");
+                    + "n_silver int , n_total int , date1 char(10) , interest float , g_gold float , g_silver float , rupess int , description text)");
             
              st.execute("create table table_" + year + "_1(id int primary key , thing varchar(100) , type char(10) , n_gold int , "
-                    + "n_silver int , n_total int , date1 char(10) , interest int , g_gold int , g_silver int , rupess int , rupess2 int , date2 char(10) , description text)");
+                    + "n_silver int , n_total int , date1 char(10) , interest float , g_gold float , g_silver float , rupess int , rupess2 int , date2 char(10) , description text)");
              flag=true;
         }
         catch (SQLException ex) 
@@ -98,7 +98,7 @@ public class Connect
             
             st.executeUpdate("insert into " + table + "_1 values(" + rs.getInt("id") + ",'" + rs.getString("thing") + "','" + rs.getString("type")
             + "'," + rs.getInt("n_gold") + "," + rs.getInt("n_silver") + "," + rs.getInt("n_total") + ",'" + rs.getString("date1")
-            + "'," + rs.getInt("interest") + "," + rs.getInt("g_gold") + "," + rs.getInt("g_silver") + "," + rs.getInt("rupess")
+            + "'," + rs.getFloat("interest") + "," + rs.getFloat("g_gold") + "," + rs.getFloat("g_silver") + "," + rs.getInt("rupess")
             + "," + rupess + ",'" + date + "','" + rs.getString("description") + "')");
             
             st.execute("delete from " + table + " where id = " + id);
@@ -160,7 +160,7 @@ public class Connect
             
             st.executeUpdate("insert into " + table + " values(" + rs.getInt("id") + ",'" + rs.getString("thing") + "','" + rs.getString("type")
             + "'," + rs.getInt("n_gold") + "," + rs.getInt("n_silver") + "," + rs.getInt("n_total") + ",'" + rs.getString("date1")
-            + "'," + rs.getInt("interest") + "," + rs.getInt("g_gold") + "," + rs.getInt("g_silver") + "," + rs.getInt("rupess")
+            + "'," + rs.getFloat("interest") + "," + rs.getFloat("g_gold") + "," + rs.getFloat("g_silver") + "," + rs.getInt("rupess")
             + "," + rupess + ",'" + date + "','" + rs.getString("description") + "')");
             
             st.execute("delete from pending" + " where id = " + id);

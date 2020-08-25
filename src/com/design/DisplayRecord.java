@@ -182,8 +182,8 @@ public class DisplayRecord extends javax.swing.JFrame
                     {
                         Thing thing = new Thing(resultset.getInt("id"),resultset.getString("thing"),resultset.getString("type"),
                                 resultset.getInt("n_gold"),resultset.getInt("n_silver"),resultset.getInt("n_total"),
-                                resultset.getString("date1"),resultset.getInt("interest"),resultset.getInt("g_gold"),
-                                resultset.getInt("g_silver"),resultset.getInt("rupess"),resultset.getString("description"));
+                                resultset.getString("date1"),resultset.getFloat("interest"),resultset.getFloat("g_gold"),
+                                resultset.getFloat("g_silver"),resultset.getInt("rupess"),resultset.getString("description"));
                         al.add(thing);
                     }while(resultset.next());
                 }

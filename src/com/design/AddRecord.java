@@ -371,7 +371,8 @@ public class AddRecord extends javax.swing.JFrame
         {
             public void run()
             {
-                int id=0,n_gold=0,n_silver=0,n_total=0,interest=0,g_gold=0,g_silver=0,rupess=0;
+                int id=0,n_gold=0,n_silver=0,n_total=0,rupess=0;
+                float interest=0,g_gold=0,g_silver=0;
                 String thing,type,date;
                 
                 try
@@ -423,7 +424,7 @@ public class AddRecord extends javax.swing.JFrame
                 
                 try
                 {
-                    interest = Integer.parseInt(interest_txt.getText());
+                    interest = Float.parseFloat(interest_txt.getText());
                 }
                 catch(Exception e)
                 {
@@ -433,7 +434,7 @@ public class AddRecord extends javax.swing.JFrame
                 
                 try
                 {
-                    g_gold = Integer.parseInt(g_gold_txt.getText());
+                    g_gold = Float.parseFloat(g_gold_txt.getText());
                 }
                 catch(Exception e)
                 {
@@ -443,7 +444,7 @@ public class AddRecord extends javax.swing.JFrame
                 
                 try
                 {
-                    g_silver = Integer.parseInt(g_silver_txt.getText());
+                    g_silver = Float.parseFloat(g_silver_txt.getText());
                 }
                 catch(Exception e)
                 {

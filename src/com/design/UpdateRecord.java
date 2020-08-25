@@ -342,10 +342,10 @@ public class UpdateRecord extends javax.swing.JFrame
                         Date date = new Date(rs.getString("date1"));
                         date_dtpicker.setDate(date);
                         
-                        interest_txt.setText(rs.getInt("interest") + "");
+                        interest_txt.setText(rs.getFloat("interest") + "");
                         
-                        g_gold_txt.setText(rs.getInt("g_gold") + "");
-                        g_silver_txt.setText(rs.getInt("g_silver") + "");
+                        g_gold_txt.setText(rs.getFloat("g_gold") + "");
+                        g_silver_txt.setText(rs.getFloat("g_silver") + "");
                         
                         rupess_txt.setText(rs.getInt("rupess") + "");
                         
