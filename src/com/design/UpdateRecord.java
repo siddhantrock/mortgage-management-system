@@ -4,6 +4,7 @@ import com.commodity.Thing;
 import com.database.Connect;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -81,61 +82,116 @@ public class UpdateRecord extends javax.swing.JFrame
         jLabel1.setText("Enter id");
 
         id_txt.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        id_txt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                id_txtFocusLost(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel2.setText("Enter thing");
 
         thing_txt.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        thing_txt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                thing_txtFocusLost(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel3.setText("Enter type");
 
         type_combo.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         type_combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gold", "Silver", "Both" }));
+        type_combo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                type_comboFocusLost(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel4.setText("Number of gold");
 
         n_gold_combo.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         n_gold_combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        n_gold_combo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                n_gold_comboFocusLost(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel5.setText("Number of silver");
 
         n_silver_combo.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         n_silver_combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        n_silver_combo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                n_silver_comboFocusLost(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel6.setText("Number of total");
 
         n_total_combo.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         n_total_combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        n_total_combo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                n_total_comboFocusLost(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel7.setText("Enter date");
 
         date_dtpicker.setDateFormatString("MM/dd/yyyy");
         date_dtpicker.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        date_dtpicker.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                date_dtpickerFocusLost(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel8.setText("Enter interest");
 
         interest_txt.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        interest_txt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                interest_txtFocusLost(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel9.setText("Gross weight of gold");
 
         g_gold_txt.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        g_gold_txt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                g_gold_txtFocusLost(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel10.setText("Gross weight of silver");
 
         g_silver_txt.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        g_silver_txt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                g_silver_txtFocusLost(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel11.setText("Enter rupess");
 
         rupess_txt.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        rupess_txt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                rupess_txtFocusLost(evt);
+            }
+        });
 
         jLabel12.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel12.setText("Enter description");
@@ -153,6 +209,11 @@ public class UpdateRecord extends javax.swing.JFrame
         update_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         update_btn.setText("Update");
         update_btn.setEnabled(false);
+        update_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                update_btnActionPerformed(evt);
+            }
+        });
 
         update_description_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         update_description_btn.setText("Update description");
@@ -436,6 +497,486 @@ public class UpdateRecord extends javax.swing.JFrame
         }).start();
         
     }//GEN-LAST:event_description_txtFocusLost
+
+    private void id_txtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_id_txtFocusLost
+
+        new Thread(new Runnable()
+        {
+            public void run()
+            {
+                try 
+                {
+                    if(Integer.parseInt(id_txt.getText()) == rs.getInt("id"))
+                    {
+                        id_check = false;
+                    }
+                    else
+                    {
+                        id_check = true;
+                    }
+                }
+                catch (SQLException ex) 
+                {
+                    Logger.getLogger(UpdateRecord.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                if(id_check==true || thing_check==true || type_check==true || n_gold_check==true || n_silver_check==true || n_total_check ==true
+                      || date_check==true || interest_check==true || g_gold_check==true || g_silver_check==true || rupess_check==true)
+                {
+                    update_btn.setEnabled(true);
+                }
+                else
+                {
+                    update_btn.setEnabled(false);
+                }
+            }
+        }).start();
+        
+    }//GEN-LAST:event_id_txtFocusLost
+
+    private void thing_txtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_thing_txtFocusLost
+
+        new Thread(new Runnable()
+        {
+            public void run()
+            {
+                try 
+                {
+                    if(thing_txt.getText().equals(rs.getString("thing")))
+                    {
+                        thing_check = false;
+                    }
+                    else
+                    {
+                        thing_check = true;
+                    }
+                }
+                catch (SQLException ex) 
+                {
+                    Logger.getLogger(UpdateRecord.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                if(id_check==true || thing_check==true || type_check==true || n_gold_check==true || n_silver_check==true || n_total_check ==true
+                      || date_check==true || interest_check==true || g_gold_check==true || g_silver_check==true || rupess_check==true)
+                {
+                    update_btn.setEnabled(true);
+                }
+                else
+                {
+                    update_btn.setEnabled(false);
+                }
+            }
+        }).start();
+        
+    }//GEN-LAST:event_thing_txtFocusLost
+
+    private void interest_txtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_interest_txtFocusLost
+
+        new Thread(new Runnable()
+        {
+            public void run()
+            {
+                try 
+                {
+                    if(Float.parseFloat(interest_txt.getText()) == rs.getFloat("interest"))
+                    {
+                        interest_check = false;
+                    }
+                    else
+                    {
+                        interest_check = true;
+                    }
+                }
+                catch (SQLException ex) 
+                {
+                    Logger.getLogger(UpdateRecord.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                if(id_check==true || thing_check==true || type_check==true || n_gold_check==true || n_silver_check==true || n_total_check ==true
+                      || date_check==true || interest_check==true || g_gold_check==true || g_silver_check==true || rupess_check==true)
+                {
+                    update_btn.setEnabled(true);
+                }
+                else
+                {
+                    update_btn.setEnabled(false);
+                }
+            }
+        }).start();
+        
+    }//GEN-LAST:event_interest_txtFocusLost
+
+    private void g_gold_txtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_g_gold_txtFocusLost
+
+        new Thread(new Runnable()
+        {
+            public void run()
+            {
+                try 
+                {
+                    if(Float.parseFloat(g_gold_txt.getText()) == rs.getFloat("g_gold"))
+                    {
+                        g_gold_check = false;
+                    }
+                    else
+                    {
+                        g_gold_check = true;
+                    }
+                }
+                catch (SQLException ex) 
+                {
+                    Logger.getLogger(UpdateRecord.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                if(id_check==true || thing_check==true || type_check==true || n_gold_check==true || n_silver_check==true || n_total_check ==true
+                      || date_check==true || interest_check==true || g_gold_check==true || g_silver_check==true || rupess_check==true)
+                {
+                    update_btn.setEnabled(true);
+                }
+                else
+                {
+                    update_btn.setEnabled(false);
+                }
+            }
+        }).start();
+        
+    }//GEN-LAST:event_g_gold_txtFocusLost
+
+    private void g_silver_txtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_g_silver_txtFocusLost
+
+        new Thread(new Runnable()
+        {
+            public void run()
+            {
+                try 
+                {
+                    if(Float.parseFloat(g_silver_txt.getText()) == rs.getFloat("g_silver"))
+                    {
+                        g_silver_check = false;
+                    }
+                    else
+                    {
+                        g_silver_check = true;
+                    }
+                }
+                catch (SQLException ex) 
+                {
+                    Logger.getLogger(UpdateRecord.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                if(id_check==true || thing_check==true || type_check==true || n_gold_check==true || n_silver_check==true || n_total_check ==true
+                      || date_check==true || interest_check==true || g_gold_check==true || g_silver_check==true || rupess_check==true)
+                {
+                    update_btn.setEnabled(true);
+                }
+                else
+                {
+                    update_btn.setEnabled(false);
+                }
+            }
+        }).start();
+        
+    }//GEN-LAST:event_g_silver_txtFocusLost
+
+    private void rupess_txtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_rupess_txtFocusLost
+
+        new Thread(new Runnable()
+        {
+            public void run()
+            {
+                try 
+                {
+                    if(Integer.parseInt(rupess_txt.getText()) == rs.getInt("rupess"))
+                    {
+                        rupess_check = false;
+                    }
+                    else
+                    {
+                        rupess_check = true;
+                    }
+                }
+                catch (SQLException ex) 
+                {
+                    Logger.getLogger(UpdateRecord.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                if(id_check==true || thing_check==true || type_check==true || n_gold_check==true || n_silver_check==true || n_total_check ==true
+                      || date_check==true || interest_check==true || g_gold_check==true || g_silver_check==true || rupess_check==true)
+                {
+                    update_btn.setEnabled(true);
+                }
+                else
+                {
+                    update_btn.setEnabled(false);
+                }
+            }
+        }).start();
+        
+    }//GEN-LAST:event_rupess_txtFocusLost
+
+    private void type_comboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_type_comboFocusLost
+
+        new Thread(new Runnable()
+        {
+            public void run()
+            {
+                try 
+                {
+                    if(type_combo.getItemAt(type_combo.getSelectedIndex()).equals(rs.getString("type")))
+                    {
+                        type_check = false;
+                    }
+                    else
+                    {
+                        type_check = true;
+                    }
+                }
+                catch (SQLException ex) 
+                {
+                    Logger.getLogger(UpdateRecord.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                if(id_check==true || thing_check==true || type_check==true || n_gold_check==true || n_silver_check==true || n_total_check ==true
+                      || date_check==true || interest_check==true || g_gold_check==true || g_silver_check==true || rupess_check==true)
+                {
+                    update_btn.setEnabled(true);
+                }
+                else
+                {
+                    update_btn.setEnabled(false);
+                }
+            }
+        }).start();
+        
+    }//GEN-LAST:event_type_comboFocusLost
+
+    private void n_gold_comboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_n_gold_comboFocusLost
+
+        new Thread(new Runnable()
+        {
+            public void run()
+            {
+                try 
+                {
+                    if(Integer.parseInt(n_gold_combo.getItemAt(n_gold_combo.getSelectedIndex())) == rs.getInt("n_gold"))
+                    {
+                        n_gold_check = false;
+                    }
+                    else
+                    {
+                        n_gold_check = true;
+                    }
+                }
+                catch (SQLException ex) 
+                {
+                    Logger.getLogger(UpdateRecord.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                if(id_check==true || thing_check==true || type_check==true || n_gold_check==true || n_silver_check==true || n_total_check ==true
+                      || date_check==true || interest_check==true || g_gold_check==true || g_silver_check==true || rupess_check==true)
+                {
+                    update_btn.setEnabled(true);
+                }
+                else
+                {
+                    update_btn.setEnabled(false);
+                }
+            }
+        }).start();
+        
+    }//GEN-LAST:event_n_gold_comboFocusLost
+
+    private void n_silver_comboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_n_silver_comboFocusLost
+
+        new Thread(new Runnable()
+        {
+            public void run()
+            {
+                try 
+                {
+                    if(Integer.parseInt(n_silver_combo.getItemAt(n_silver_combo.getSelectedIndex())) == rs.getInt("n_silver"))
+                    {
+                        n_silver_check = false;
+                    }
+                    else
+                    {
+                        n_silver_check = true;
+                    }
+                }
+                catch (SQLException ex) 
+                {
+                    Logger.getLogger(UpdateRecord.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                if(id_check==true || thing_check==true || type_check==true || n_gold_check==true || n_silver_check==true || n_total_check ==true
+                      || date_check==true || interest_check==true || g_gold_check==true || g_silver_check==true || rupess_check==true)
+                {
+                    update_btn.setEnabled(true);
+                }
+                else
+                {
+                    update_btn.setEnabled(false);
+                }
+            }
+        }).start();
+        
+    }//GEN-LAST:event_n_silver_comboFocusLost
+
+    private void n_total_comboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_n_total_comboFocusLost
+
+        
+        new Thread(new Runnable()
+        {
+            public void run()
+            {
+                try 
+                {
+                    if(Integer.parseInt(n_total_combo.getItemAt(n_total_combo.getSelectedIndex())) == rs.getInt("n_total"))
+                    {
+                        n_total_check = false;
+                    }
+                    else
+                    {
+                        n_total_check = true;
+                    }
+                }
+                catch (SQLException ex) 
+                {
+                    Logger.getLogger(UpdateRecord.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                if(id_check==true || thing_check==true || type_check==true || n_gold_check==true || n_silver_check==true || n_total_check ==true
+                      || date_check==true || interest_check==true || g_gold_check==true || g_silver_check==true || rupess_check==true)
+                {
+                    update_btn.setEnabled(true);
+                }
+                else
+                {
+                    update_btn.setEnabled(false);
+                }
+            }
+        }).start();
+        
+    }//GEN-LAST:event_n_total_comboFocusLost
+
+    private void date_dtpickerFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_date_dtpickerFocusLost
+
+        new Thread(new Runnable()
+        {
+            public void run()
+            {
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+                String d = sdf.format(date_dtpicker.getDate());
+                
+                try 
+                {
+                    if(d.equals(rs.getString("date1")))
+                    {
+                        date_check = false;
+                    }
+                    else
+                    {
+                        date_check = true;
+                    }
+                }
+                catch (SQLException ex) 
+                {
+                    Logger.getLogger(UpdateRecord.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                if(id_check==true || thing_check==true || type_check==true || n_gold_check==true || n_silver_check==true || n_total_check ==true
+                      || date_check==true || interest_check==true || g_gold_check==true || g_silver_check==true || rupess_check==true)
+                {
+                    update_btn.setEnabled(true);
+                }
+                else
+                {
+                    update_btn.setEnabled(false);
+                }
+            }
+        }).start();
+        
+    }//GEN-LAST:event_date_dtpickerFocusLost
+
+    private void update_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_btnActionPerformed
+
+        new Thread(new Runnable()
+        {
+            public void run()
+            {
+                String query = "update " + table + "set ";
+                
+                if(id_check == true)
+                {
+                    query += "id = " + Integer.parseInt(id_txt.getText());
+                }
+                
+                if(thing_check == true)
+                {
+                    query += " , thing = " + thing_txt.getText();
+                }
+                
+                if(type_check == true)
+                {
+                    query += " , type = " + type_combo.getItemAt(type_combo.getSelectedIndex());
+                }
+                
+                if(n_gold_check == true)
+                {
+                    query += " , n_gold = " + n_gold_combo.getItemAt(n_gold_combo.getSelectedIndex());
+                }
+                
+                if(n_silver_check == true)
+                {
+                    query += " , n_silver = " + n_silver_combo.getItemAt(n_silver_combo.getSelectedIndex());
+                }
+                
+                if(n_total_check == true)
+                {
+                    query += " , n_total = " + n_total_combo.getItemAt(n_total_combo.getSelectedIndex());
+                }
+                
+                if(date_check == true)
+                {
+                    SimpleDateFormat abc = new SimpleDateFormat("MM/dd/yyyy");
+                    String da = abc.format(date_dtpicker.getDate());
+                    query += " , date1 = " + da;
+                }
+                
+                if(interest_check == true)
+                {
+                    query += " , interest = " + interest_txt.getText();
+                }
+                
+                if(g_gold_check == true)
+                {
+                    query += " , g_gold = " + g_gold_txt.getText();
+                }
+                
+                if(g_silver_check == true)
+                {
+                    query += " , g_silver = " + g_silver_txt.getText();
+                }
+                
+                if(rupess_check == true)
+                {
+                    query += " , rupess = " + rupess_txt.getText();
+                }
+                
+                boolean flag = thing.modifyThing(connect, query, id);
+                
+                if(flag == true)
+                {
+                    JOptionPane.showMessageDialog(UpdateRecord.this, "Updation successfull");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(UpdateRecord.this, "Something went wrong please try again later");
+                }
+            }
+        }).start();
+        
+    }//GEN-LAST:event_update_btnActionPerformed
 
     /**
      * @param args the command line arguments

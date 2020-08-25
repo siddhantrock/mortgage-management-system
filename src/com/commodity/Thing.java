@@ -267,6 +267,16 @@ public class Thing
         return flag;
     }
     
+    public boolean modifyThing(Connect connect,String query,int id)
+    {
+        boolean flag=false;
+        
+        query += " where id = " + id;
+        flag = connect.updateRecord(query);
+        
+        return flag;
+    }
+    
     public static String[] dateDifference(String date , float rate , int rupess)
     {
         int total_days_difference , days , months = 0 , years = 0 , start_month , start_year;

@@ -241,6 +241,9 @@
                   <Font name="Tempus Sans ITC" size="18" style="1"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="id_txtFocusLost"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
@@ -256,6 +259,9 @@
                   <Font name="Tempus Sans ITC" size="18" style="1"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="thing_txtFocusLost"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
@@ -278,6 +284,9 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="type_comboFocusLost"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
@@ -311,6 +320,9 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="n_gold_comboFocusLost"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
@@ -344,6 +356,9 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="n_silver_comboFocusLost"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
@@ -377,6 +392,9 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="n_total_comboFocusLost"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
@@ -396,6 +414,9 @@
                   <Font name="Tempus Sans ITC" size="18" style="1"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="date_dtpickerFocusLost"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel8">
               <Properties>
@@ -411,6 +432,9 @@
                   <Font name="Tempus Sans ITC" size="18" style="1"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="interest_txtFocusLost"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel9">
               <Properties>
@@ -426,6 +450,9 @@
                   <Font name="Tempus Sans ITC" size="18" style="1"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="g_gold_txtFocusLost"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel10">
               <Properties>
@@ -441,6 +468,9 @@
                   <Font name="Tempus Sans ITC" size="18" style="1"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="g_silver_txtFocusLost"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel11">
               <Properties>
@@ -456,6 +486,9 @@
                   <Font name="Tempus Sans ITC" size="18" style="1"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="rupess_txtFocusLost"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel12">
               <Properties>
@@ -494,6 +527,9 @@
                 <Property name="text" type="java.lang.String" value="Update"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="update_btnActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="update_description_btn">
               <Properties>
