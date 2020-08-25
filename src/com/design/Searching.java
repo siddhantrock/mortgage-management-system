@@ -154,18 +154,12 @@ public class Searching extends javax.swing.JFrame
             {
                 connect = null;
                 new Home().setVisible(true);
+                connect.closeConnection();
                 dispose();
             }
         }).start();
         
     }//GEN-LAST:event_home_btnActionPerformed
-
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize(); //To change body of generated methods, choose Tools | Templates.
-        connect = null;
-    }
-
     
     
     
@@ -282,7 +276,7 @@ public class Searching extends javax.swing.JFrame
                 
                 DisplayRecord dr = new DisplayRecord();
                 dr.setVisible(true);
-                dr.setResultSet(rs,table_combo.getItemAt(table_combo.getSelectedIndex()));
+                dr.setResultSet(rs,table_combo.getItemAt(table_combo.getSelectedIndex()),connect);
                 dispose();
             }
         }).start();
@@ -316,7 +310,7 @@ public class Searching extends javax.swing.JFrame
                 
                 DisplayRecord dr = new DisplayRecord();
                 dr.setVisible(true);
-                dr.setResultSet(rs,"pending");
+                dr.setResultSet(rs,"pending",connect);
                 dispose();
             }
         }).start();

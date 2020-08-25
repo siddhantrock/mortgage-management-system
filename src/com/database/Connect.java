@@ -22,15 +22,6 @@ public class Connect
           ex.printStackTrace();
        }
     }
-
-    @Override
-    protected void finalize() throws Throwable 
-    {
-        super.finalize(); //To change body of generated methods, choose Tools | Templates.
-        st.close();
-        con.close();
-    }
-    
     
     
     public boolean addRecord(String query)
@@ -182,5 +173,19 @@ public class Connect
         }
         
         return flag;
+    }
+    
+    public void closeConnection()
+    {
+        try 
+        {
+            st.close();
+            con.close();
+            System.out.println("connection close");
+        }
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

@@ -27,10 +27,11 @@ public class DisplayRecord extends javax.swing.JFrame
         initComponents();
     }
     
-    public void setResultSet(ResultSet rs , String table)
+    public void setResultSet(ResultSet rs , String table , Connect connect)
     {
         resultset = rs;
         this.table = table;
+        this.connect = connect;
     }
 
     @SuppressWarnings("unchecked")
@@ -90,6 +91,11 @@ public class DisplayRecord extends javax.swing.JFrame
         update_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         update_btn.setText("Update");
         update_btn.setEnabled(false);
+        update_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                update_btnActionPerformed(evt);
+            }
+        });
 
         data_report_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         data_report_btn.setText("Data report");
@@ -168,7 +174,6 @@ public class DisplayRecord extends javax.swing.JFrame
         {
             public void run()
             {
-                connect = new Connect();
                 ArrayList<Thing> al = new ArrayList();
                 
                 try 
@@ -257,6 +262,7 @@ public class DisplayRecord extends javax.swing.JFrame
             public void run()
             {
                 new Searching().setVisible(true);
+                connect.closeConnection();
                 dispose();
             }
         }).start();
@@ -270,6 +276,7 @@ public class DisplayRecord extends javax.swing.JFrame
             public void run()
             {
                 new Home().setVisible(true);
+                connect.closeConnection();
                 dispose();
             }
         }).start();
@@ -335,14 +342,19 @@ public class DisplayRecord extends javax.swing.JFrame
         
     }//GEN-LAST:event_Pending_btnActionPerformed
 
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize(); //To change body of generated methods, choose Tools | Templates.
-        connect = null;
-        resultset.close();
-    }
+    private void update_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_btnActionPerformed
 
-    
+        new Thread(new Runnable()
+        {
+            public void run()
+            {
+                UpdateRecord ur = new UpdateRecord();
+                ur.setVisible(true);
+                ur.setData(id,table,DisplayRecord.this,connect);
+            }
+        }).start();
+        
+    }//GEN-LAST:event_update_btnActionPerformed
     
     /**
      * @param args the command line arguments

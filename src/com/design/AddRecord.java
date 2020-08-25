@@ -309,6 +309,7 @@ public class AddRecord extends javax.swing.JFrame
                     JOptionPane.showMessageDialog(AddRecord.this, "Something went wrong please try again later");
                 }
                 new Home().setVisible(true);
+                connect.closeConnection();
                 dispose();
             }
         }).start();
@@ -356,6 +357,7 @@ public class AddRecord extends javax.swing.JFrame
             {
                 connect = null;
                 new Home().setVisible(true);
+                connect.closeConnection();
                 dispose();
             }
         }).start();
@@ -481,19 +483,12 @@ public class AddRecord extends javax.swing.JFrame
                 }
                 
                 new Home().setVisible(true);
+                connect.closeConnection();
                 dispose();
             }
         }).start();
         
     }//GEN-LAST:event_add_btnActionPerformed
-
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize(); //To change body of generated methods, choose Tools | Templates.
-        connect = null;
-    }
-
-    
     
     /**
      * @param args the command line arguments
