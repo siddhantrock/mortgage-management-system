@@ -188,4 +188,21 @@ public class Connect
             Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public boolean updateRecord(String query)
+    {
+        boolean flag = false;
+        
+        try 
+        {
+            st.execute("query");
+            flag = true;
+        }
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return flag;
+    }
 }

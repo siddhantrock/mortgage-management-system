@@ -480,6 +480,9 @@
                     </Property>
                     <Property name="rows" type="int" value="5"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="description_txtFocusLost"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -500,6 +503,9 @@
                 <Property name="text" type="java.lang.String" value="Update description"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="update_description_btnActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="home_btn">
               <Properties>

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class UpdateRecord extends javax.swing.JFrame 
 {
@@ -15,6 +16,9 @@ public class UpdateRecord extends javax.swing.JFrame
     Thing thing;
     String table;
     DisplayRecord display_record;
+    ResultSet rs;
+    
+    boolean id_check,thing_check,type_check,n_gold_check,n_silver_check,n_total_check,date_check,interest_check,g_gold_check,g_silver_check,rupess_check;
     
     public UpdateRecord() 
     {
@@ -139,6 +143,11 @@ public class UpdateRecord extends javax.swing.JFrame
         description_txt.setColumns(20);
         description_txt.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         description_txt.setRows(5);
+        description_txt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                description_txtFocusLost(evt);
+            }
+        });
         jScrollPane2.setViewportView(description_txt);
 
         update_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
@@ -148,6 +157,11 @@ public class UpdateRecord extends javax.swing.JFrame
         update_description_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         update_description_btn.setText("Update description");
         update_description_btn.setEnabled(false);
+        update_description_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                update_description_btnActionPerformed(evt);
+            }
+        });
 
         home_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         home_btn.setText("Home");
@@ -324,7 +338,7 @@ public class UpdateRecord extends javax.swing.JFrame
             public void run()
             {
                 thing = new Thing(id);
-                ResultSet rs = thing.retriveThing(connect, table, false, false);
+                rs = thing.retriveThing(connect, table, false, false);
                 
                 try 
                 {
@@ -374,6 +388,54 @@ public class UpdateRecord extends javax.swing.JFrame
         }).start();
         
     }//GEN-LAST:event_home_btnActionPerformed
+
+    private void update_description_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_description_btnActionPerformed
+
+        new Thread(new Runnable()
+        {
+            public void run()
+            {
+                String data = description_txt.getText();
+                boolean flag = thing.modifyDescription(connect, table, id, data);
+                
+                if(flag == true)
+                {
+                    JOptionPane.showMessageDialog(UpdateRecord.this, "Description updation successfull");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(UpdateRecord.this, "Something went wrong please try again later");
+                }
+            }
+        }).start();
+        
+    }//GEN-LAST:event_update_description_btnActionPerformed
+
+    private void description_txtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_description_txtFocusLost
+
+        new Thread(new Runnable()
+        {
+            public void run()
+            {
+                try 
+                {
+                    if(description_txt.getText().equals(rs.getString("description")))
+                    {
+                        update_description_btn.setEnabled(false);
+                    }
+                    else
+                    {
+                        update_description_btn.setEnabled(true);
+                    }
+                }
+                catch (SQLException ex) 
+                {
+                    Logger.getLogger(UpdateRecord.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }).start();
+        
+    }//GEN-LAST:event_description_txtFocusLost
 
     /**
      * @param args the command line arguments

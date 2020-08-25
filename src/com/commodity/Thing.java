@@ -258,6 +258,15 @@ public class Thing
         return flag;
     }
     
+    public boolean modifyDescription(Connect connect,String table, int id , String data)
+    {
+        boolean flag = false;
+        
+        flag = connect.updateRecord("update " + table + " set description = '" + data + "'");
+        
+        return flag;
+    }
+    
     public static String[] dateDifference(String date , float rate , int rupess)
     {
         int total_days_difference , days , months = 0 , years = 0 , start_month , start_year;
