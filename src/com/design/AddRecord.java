@@ -9,10 +9,12 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import java.util.HashMap;
 
 public class AddRecord extends javax.swing.JFrame 
 {
     Connect connect;
+    int total;
     
     public AddRecord() 
     {
@@ -80,25 +82,45 @@ public class AddRecord extends javax.swing.JFrame
         jLabel4.setText("Select Type");
 
         type_combo.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
-        type_combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gold", "Silver", "Both" }));
+        type_combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "GOLD", "SILVER", "BOTH" }));
+        type_combo.setSelectedIndex(-1);
+        type_combo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                type_comboItemStateChanged(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel5.setText("Number of gold");
 
         n_gold_combo.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         n_gold_combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        n_gold_combo.setSelectedIndex(-1);
+        n_gold_combo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                n_gold_comboItemStateChanged(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel6.setText("Number of silver");
 
         n_silver_combo.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         n_silver_combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        n_silver_combo.setSelectedIndex(-1);
+        n_silver_combo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                n_silver_comboItemStateChanged(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel7.setText("Number of total");
 
         n_total_combo.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         n_total_combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        n_total_combo.setSelectedIndex(-1);
+        n_total_combo.setEnabled(false);
 
         jLabel8.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel8.setText("Enter date");
@@ -326,7 +348,7 @@ public class AddRecord extends javax.swing.JFrame
                 ResultSet rs = connect.showTables();
                 Date obj = new Date();
                 date_dtpicker.setDate(obj);
-        
+                
                 try 
                 {
                     while(rs.next())
@@ -355,7 +377,6 @@ public class AddRecord extends javax.swing.JFrame
         {
             public void run()
             {
-                connect = null;
                 new Home().setVisible(true);
                 connect.closeConnection();
                 dispose();
@@ -387,7 +408,15 @@ public class AddRecord extends javax.swing.JFrame
                 
                 thing = thing_txt.getText().trim().toUpperCase();
                 
-                type = type_combo.getItemAt(type_combo.getSelectedIndex()).trim().toUpperCase();
+                try
+                {
+                    type = type_combo.getItemAt(type_combo.getSelectedIndex()).trim().toUpperCase();
+                }
+                catch(Exception e)
+                {
+                    JOptionPane.showMessageDialog(AddRecord.this, "Please select valid type");
+                    return;
+                }
                 
                 try
                 {
@@ -490,6 +519,90 @@ public class AddRecord extends javax.swing.JFrame
         }).start();
         
     }//GEN-LAST:event_add_btnActionPerformed
+
+    private void type_comboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_type_comboItemStateChanged
+
+        new Thread(new Runnable()
+        {
+            public void run()
+            {
+                switch (type_combo.getItemAt(type_combo.getSelectedIndex())) 
+                {
+                    case "GOLD":
+                        n_gold_combo.setEnabled(true);
+                        n_gold_combo.setSelectedIndex(-1);
+                        g_gold_txt.setEnabled(true);
+                        g_gold_txt.setText("");
+                        n_silver_combo.setSelectedIndex(0);
+                        n_silver_combo.setEnabled(false);
+                        n_total_combo.setEnabled(false);
+                        g_silver_txt.setText("0");
+                        g_silver_txt.setEnabled(false);
+                        break;
+                    
+                    case "SILVER":
+                        n_silver_combo.setEnabled(true);
+                        n_silver_combo.setSelectedIndex(-1);
+                        g_silver_txt.setEnabled(true);
+                        g_silver_txt.setText("");
+                        n_gold_combo.setSelectedIndex(0);
+                        n_gold_combo.setEnabled(false);
+                        n_total_combo.setEnabled(false);
+                        g_gold_txt.setText("0");
+                        g_gold_txt.setEnabled(false);
+                        break;
+                        
+                    case "BOTH":
+                        n_gold_combo.setEnabled(true);
+                        n_gold_combo.setSelectedIndex(-1);
+                        g_gold_txt.setEnabled(true);
+                        g_gold_txt.setText("");
+                        
+                        n_silver_combo.setEnabled(true);
+                        n_silver_combo.setSelectedIndex(-1);
+                        g_silver_txt.setEnabled(true);
+                        g_silver_txt.setText("");
+                    default:
+                        break;
+                }
+            }
+        }).start();
+        
+    }//GEN-LAST:event_type_comboItemStateChanged
+
+    private void n_gold_comboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_n_gold_comboItemStateChanged
+
+        new Thread(new Runnable()
+        {
+            public void run()
+            {
+                if(n_gold_combo.getSelectedIndex() >= 0)
+                {
+                    total = Integer.parseInt(n_gold_combo.getItemAt(n_gold_combo.getSelectedIndex()));
+                }
+
+                n_total_combo.setSelectedIndex(total);
+            }
+        }).start();
+        
+    }//GEN-LAST:event_n_gold_comboItemStateChanged
+
+    private void n_silver_comboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_n_silver_comboItemStateChanged
+
+        new Thread(new Runnable()
+        {
+            public void run()
+            {
+                if(n_silver_combo.getSelectedIndex() >= 0)
+                {
+                    total = Integer.parseInt(n_silver_combo.getItemAt(n_silver_combo.getSelectedIndex()));
+                }
+                
+                n_total_combo.setSelectedIndex(total);
+            }
+        }).start();
+        
+    }//GEN-LAST:event_n_silver_comboItemStateChanged
     
     /**
      * @param args the command line arguments
