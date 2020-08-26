@@ -204,4 +204,32 @@ public class Connect
         
         return flag;
     }
+    
+    public ResultSet calculateThingSum(String table)
+    {
+        ResultSet rs=null;
+        try 
+        {
+            rs = st.executeQuery("select sum(rupess) from " + table);
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return rs;
+    }
+    
+    public ResultSet calculateThingProfit(String table)
+    {
+        ResultSet rs=null;
+        
+        try 
+        {
+            rs = st.executeQuery("select sum(rupess2 - rupess) from " + table);
+        }
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return rs;
+    }
 }
