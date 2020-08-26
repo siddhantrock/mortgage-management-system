@@ -181,7 +181,6 @@ public class Connect
         {
             st.close();
             con.close();
-            System.out.println("connection close");
         }
         catch (SQLException ex) 
         {
@@ -195,7 +194,7 @@ public class Connect
         
         try 
         {
-            st.execute("query");
+            st.execute(query);
             flag = true;
         }
         catch (SQLException ex) 

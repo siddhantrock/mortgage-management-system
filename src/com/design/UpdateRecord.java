@@ -462,6 +462,9 @@ public class UpdateRecord extends javax.swing.JFrame
                 if(flag == true)
                 {
                     JOptionPane.showMessageDialog(UpdateRecord.this, "Description updation successfull");
+                    connect.closeConnection();
+                    dispose();
+                    display_record.dispose();
                 }
                 else
                 {
@@ -904,7 +907,7 @@ public class UpdateRecord extends javax.swing.JFrame
         {
             public void run()
             {
-                String query = "update " + table + "set ";
+                String query = "update " + table + " set ";
                 
                 if(id_check == true)
                 {
@@ -913,12 +916,12 @@ public class UpdateRecord extends javax.swing.JFrame
                 
                 if(thing_check == true)
                 {
-                    query += " , thing = " + thing_txt.getText();
+                    query += " , thing = '" + thing_txt.getText() + "'";
                 }
                 
                 if(type_check == true)
                 {
-                    query += " , type = " + type_combo.getItemAt(type_combo.getSelectedIndex());
+                    query += " , type = '" + type_combo.getItemAt(type_combo.getSelectedIndex()) + "'";
                 }
                 
                 if(n_gold_check == true)
@@ -940,7 +943,7 @@ public class UpdateRecord extends javax.swing.JFrame
                 {
                     SimpleDateFormat abc = new SimpleDateFormat("MM/dd/yyyy");
                     String da = abc.format(date_dtpicker.getDate());
-                    query += " , date1 = " + da;
+                    query += " , date1 = '" + da + "'";
                 }
                 
                 if(interest_check == true)
@@ -968,6 +971,9 @@ public class UpdateRecord extends javax.swing.JFrame
                 if(flag == true)
                 {
                     JOptionPane.showMessageDialog(UpdateRecord.this, "Updation successfull");
+                    connect.closeConnection();
+                    dispose();
+                    display_record.dispose();
                 }
                 else
                 {
