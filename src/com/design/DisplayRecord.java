@@ -55,6 +55,7 @@ public class DisplayRecord extends javax.swing.JFrame
             }
         });
 
+        jTable1.setBorder(new javax.swing.border.MatteBorder(null));
         jTable1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -183,6 +184,7 @@ public class DisplayRecord extends javax.swing.JFrame
             public void run()
             {
                 ArrayList<Thing> al = new ArrayList();
+                int total_rs = 0 , total_si = 0 , tota_total = 0;
                 
                 try 
                 {
@@ -201,6 +203,7 @@ public class DisplayRecord extends javax.swing.JFrame
                 }
                 
                 Object[] obj = new Object[9];
+                DefaultTableModel model1 = (DefaultTableModel)jTable1.getModel();
                 
                 for(int i=0;i<al.size();i++)
                 {   
@@ -208,17 +211,50 @@ public class DisplayRecord extends javax.swing.JFrame
                     obj[1] = al.get(i).getThing();
                     obj[2] = al.get(i).getDate();
                     obj[3] = al.get(i).getRupess();
+                    total_rs += al.get(i).getRupess();
+                    
                     obj[4] = al.get(i).getInterest();
                     
                     String data[] = Thing.dateDifference(al.get(i).getDate(), al.get(i).getInterest(), al.get(i).getRupess());
                     
                     obj[5] = data[0];
+                    
                     obj[6] = data[1];
+                    total_si += Integer.parseInt(data[1]);
+                    
+                    
                     obj[7] = Integer.parseInt(data[1]) + al.get(i).getRupess();
+                    tota_total += Integer.parseInt(data[1]) + al.get(i).getRupess();
+                    
                     obj[8] = al.get(i).getDescription();
+                    
+                    model1.addRow(obj);
                 }
                 
-                DefaultTableModel model1 = (DefaultTableModel)jTable1.getModel();
+                obj[0] = "";
+                obj[1] = "";
+                obj[2] = "";
+                obj[3] = "";
+                obj[4] = "";
+                obj[5] = "";
+                obj[6] = "";
+                obj[7] = "";
+                obj[8] = "";
+                
+                model1.addRow(obj);
+                model1.addRow(obj);
+                model1.addRow(obj);
+                
+                obj[0] = "";
+                obj[1] = "Total";
+                obj[2] = "";
+                obj[3] = total_rs;
+                obj[4] = "";
+                obj[5] = "";
+                obj[6] = total_si;
+                obj[7] = tota_total;
+                obj[8] = "";
+                
                 model1.addRow(obj);
                 
                 ListSelectionModel model = jTable1.getSelectionModel();
@@ -242,7 +278,13 @@ public class DisplayRecord extends javax.swing.JFrame
                                 update_btn.setEnabled(true);
                                 data_report_btn.setEnabled(true);
                             }
-                                    
+                                 
+                            if(model1.getValueAt(model.getMinSelectionIndex(),0) == "")
+                            {
+                                jTable1.setSelectionMode(0);
+                                return;
+                            }
+                            
                             id = Integer.parseInt(model1.getValueAt(model.getMinSelectionIndex(),0)+"");
                             row = model.getMinSelectionIndex();
                             pending_year = model1.getValueAt(model.getMinSelectionIndex(),2)+"";
