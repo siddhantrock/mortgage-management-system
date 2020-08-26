@@ -232,4 +232,21 @@ public class Connect
         }
         return rs;
     }
+    
+    public boolean addNote(String data, String date)
+    {
+        boolean flag=false;
+        
+        try 
+        {
+            st.executeUpdate("insert into notes(note,date1) values('" + data + "','" + date + "',')");
+            flag = true;
+        }
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return flag;
+    }
 }

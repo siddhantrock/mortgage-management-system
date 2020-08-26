@@ -42,6 +42,11 @@ public class Home extends javax.swing.JFrame
 
         notes_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); // NOI18N
         notes_btn.setText("Notes");
+        notes_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                notes_btnActionPerformed(evt);
+            }
+        });
         getContentPane().add(notes_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 360, -1, -1));
 
         calculate_sum_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); // NOI18N
@@ -97,6 +102,19 @@ public class Home extends javax.swing.JFrame
         }).start();
         
     }//GEN-LAST:event_calculate_sum_btnActionPerformed
+
+    private void notes_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notes_btnActionPerformed
+
+        new Thread(new Runnable()
+        {
+            public void run()
+            {
+                new NotesHome().setVisible(true);
+                dispose();
+            }
+        }).start();
+        
+    }//GEN-LAST:event_notes_btnActionPerformed
 
     /**
      * @param args the command line arguments
