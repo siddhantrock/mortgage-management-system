@@ -1,5 +1,7 @@
 package com.design;
 
+import javax.swing.JOptionPane;
+
 public class NotesHome extends javax.swing.JFrame 
 {
     public NotesHome() 
@@ -28,6 +30,11 @@ public class NotesHome extends javax.swing.JFrame
 
         show_note_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); // NOI18N
         show_note_btn.setText("Show notes");
+        show_note_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                show_note_btnActionPerformed(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); // NOI18N
         jButton1.setText("Home");
@@ -42,23 +49,23 @@ public class NotesHome extends javax.swing.JFrame
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(398, 398, 398)
+                .addGap(268, 268, 268)
                 .addComponent(add_note_btn)
-                .addGap(125, 125, 125)
+                .addGap(127, 127, 127)
                 .addComponent(show_note_btn)
-                .addGap(131, 131, 131)
+                .addGap(129, 129, 129)
                 .addComponent(jButton1)
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addContainerGap(284, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(254, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(248, 248, 248)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(add_note_btn)
                     .addComponent(show_note_btn)
                     .addComponent(jButton1))
-                .addGap(246, 246, 246))
+                .addContainerGap(252, Short.MAX_VALUE))
         );
 
         pack();
@@ -89,6 +96,25 @@ public class NotesHome extends javax.swing.JFrame
         }).start();
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void show_note_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_note_btnActionPerformed
+
+        new Thread(new Runnable()
+        {
+            public void run()
+            {
+                Object[] obj = {"notes","notes_1"};
+                
+                String table = (String)JOptionPane.showInputDialog(NotesHome.this, "Please select table", "", JOptionPane.PLAIN_MESSAGE, null, obj, "");
+                
+                DisplayNotes display_notes = new DisplayNotes();
+                display_notes.setVisible(true);
+                display_notes.setTable(table);
+                dispose();
+            }
+        }).start();
+        
+    }//GEN-LAST:event_show_note_btnActionPerformed
 
     /**
      * @param args the command line arguments

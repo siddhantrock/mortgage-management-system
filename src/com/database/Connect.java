@@ -1,8 +1,10 @@
 package com.database;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.Date;
 
 public class Connect 
 {
@@ -239,7 +241,48 @@ public class Connect
         
         try 
         {
-            st.executeUpdate("insert into notes(note,date1) values('" + data + "','" + date + "',')");
+            st.executeUpdate("insert into notes(note,date1) values('" + data + "','" + date + "')");
+            flag = true;
+        }
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return flag;
+    }
+    
+    public ResultSet getNotes(String table)
+    {
+        ResultSet rs=null;
+        
+        try 
+        {
+            rs = st.executeQuery("select * from " + table);
+        }
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return rs;
+    }
+    
+    public boolean deleteNote(int id)
+    {
+        boolean flag=false;
+        
+        try 
+        {
+            ResultSet rs = st.executeQuery("select * from notes where id = " + id);
+            rs.next();
+            
+            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+            String date = sdf.format(new Date());
+            st.executeUpdate("insert into notes_1(note,date1,date2) values('" + rs.getString("note") + "','" + rs.getString("date1")
+                             + "','" + date + "')");
+            
+            st.execute("delete from notes where id = " + id);
             flag = true;
         }
         catch (SQLException ex) 
