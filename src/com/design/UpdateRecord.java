@@ -445,6 +445,7 @@ public class UpdateRecord extends javax.swing.JFrame
                 new Home().setVisible(true);
                 connect.closeConnection();
                 dispose();
+                display_record.dispose();
             }
         }).start();
         
@@ -971,6 +972,7 @@ public class UpdateRecord extends javax.swing.JFrame
                 if(flag == true)
                 {
                     JOptionPane.showMessageDialog(UpdateRecord.this, "Updation successfull");
+                    new Home().setVisible(true);
                     connect.closeConnection();
                     dispose();
                     display_record.dispose();

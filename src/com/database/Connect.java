@@ -268,7 +268,7 @@ public class Connect
         return rs;
     }
     
-    public boolean deleteNote(int id)
+    public boolean deleteNote(int id , String note_1)
     {
         boolean flag=false;
         
@@ -279,8 +279,8 @@ public class Connect
             
             SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
             String date = sdf.format(new Date());
-            st.executeUpdate("insert into notes_1(note,date1,date2) values('" + rs.getString("note") + "','" + rs.getString("date1")
-                             + "','" + date + "')");
+            st.executeUpdate("insert into notes_1(note,date1,note1,date2) values('" + rs.getString("note") + "','" + rs.getString("date1")
+                             + "','" + note_1 + "','" + date + "')");
             
             st.execute("delete from notes where id = " + id);
             flag = true;

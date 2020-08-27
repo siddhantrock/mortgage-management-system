@@ -240,7 +240,6 @@ public class DisplayNotes extends javax.swing.JFrame
                             {
                                 delete_btn.setEnabled(false);
                                 update_btn.setEnabled(false);
-                                data_report_btn.setEnabled(false);
                             }
                             
                             id = Integer.parseInt(model.getValueAt(model1.getMinSelectionIndex(),0)+"");
@@ -267,7 +266,19 @@ public class DisplayNotes extends javax.swing.JFrame
         {
             public void run()
             {
-                boolean flag = connect.deleteNote(id);
+                int i = JOptionPane.showConfirmDialog(DisplayNotes.this, "Do you really wants to delete this record");
+                
+                if(i != 0)
+                {
+                    return;
+                }
+                
+                String note_1 = "";
+                note_1 = JOptionPane.showInputDialog(DisplayNotes.this, "Add release note");
+                
+                
+                
+                boolean flag = connect.deleteNote(id,note_1);
                 
                 if(flag == true)
                 {
