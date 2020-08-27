@@ -340,7 +340,23 @@ public class DisplayRecord extends javax.swing.JFrame
             public void run()
         {
             boolean flag=false;
-            int rupess = Integer.parseInt(JOptionPane.showInputDialog(DisplayRecord.this, "Please enter rupess"));
+            int rupess = 0;
+            
+            int i = JOptionPane.showConfirmDialog(DisplayRecord.this, "Do you really want to delete this record");
+            
+            if(i != 0)
+            {
+                return;
+            }
+            try
+            {
+                rupess = Integer.parseInt(JOptionPane.showInputDialog(DisplayRecord.this, "Please enter rupess"));
+            }
+            catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(DisplayRecord.this, "Please enter valid rupess");
+                return;
+            }
             SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
             String date = sdf.format(new Date());
             

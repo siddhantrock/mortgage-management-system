@@ -230,6 +230,7 @@ public class Searching extends javax.swing.JFrame
                 catch(Exception e)
                 {
                     JOptionPane.showMessageDialog(Searching.this, "Please enter valid thing");
+                    return;
                 }
                 
                 if(date_dtpicker.getDate() != null)
