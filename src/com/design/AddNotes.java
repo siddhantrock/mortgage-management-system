@@ -26,6 +26,7 @@ public class AddNotes extends javax.swing.JFrame
         add_note_btn = new javax.swing.JButton();
         back_btn = new javax.swing.JButton();
         home_btn = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(AddNotes.MAXIMIZED_BOTH);
@@ -34,20 +35,26 @@ public class AddNotes extends javax.swing.JFrame
                 formWindowOpened(evt);
             }
         });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel1.setText("Enter note");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(233, 86, -1, -1));
 
         note_txt.setColumns(20);
         note_txt.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         note_txt.setRows(5);
         jScrollPane1.setViewportView(note_txt);
 
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(608, 58, 332, 141));
+
         jLabel2.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel2.setText("Enter date");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(233, 280, -1, -1));
 
         date_dtpicker.setDateFormatString("MM/dd/yyyy");
         date_dtpicker.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        getContentPane().add(date_dtpicker, new org.netbeans.lib.awtextra.AbsoluteConstraints(673, 280, 192, -1));
 
         add_note_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         add_note_btn.setText("Add note");
@@ -56,6 +63,7 @@ public class AddNotes extends javax.swing.JFrame
                 add_note_btnActionPerformed(evt);
             }
         });
+        getContentPane().add(add_note_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(306, 420, -1, -1));
 
         back_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         back_btn.setText("Back");
@@ -64,6 +72,7 @@ public class AddNotes extends javax.swing.JFrame
                 back_btnActionPerformed(evt);
             }
         });
+        getContentPane().add(back_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(588, 420, -1, -1));
 
         home_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         home_btn.setText("Home");
@@ -72,51 +81,10 @@ public class AddNotes extends javax.swing.JFrame
                 home_btnActionPerformed(evt);
             }
         });
+        getContentPane().add(home_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(855, 420, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(233, 233, 233)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(add_note_btn)
-                        .addGap(169, 169, 169)
-                        .addComponent(back_btn)
-                        .addGap(196, 196, 196)
-                        .addComponent(home_btn))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addGap(354, 354, 354)
-                            .addComponent(date_dtpicker, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(285, 285, 285)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(264, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel1))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(81, 81, 81)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(date_dtpicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(add_note_btn)
-                    .addComponent(back_btn)
-                    .addComponent(home_btn))
-                .addGap(83, 83, 83))
-        );
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/16067961-Jewelry-earrings-on-light-silk-background-Stock-Vector-jewellery.jpg"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -240,6 +208,7 @@ public class AddNotes extends javax.swing.JFrame
     private javax.swing.JButton home_btn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea note_txt;
     // End of variables declaration//GEN-END:variables

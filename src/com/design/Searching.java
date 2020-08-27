@@ -35,6 +35,7 @@ public class Searching extends javax.swing.JFrame
         home_btn = new javax.swing.JButton();
         pending_btn = new javax.swing.JButton();
         show_all_btn = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(Searching.MAXIMIZED_BOTH);
@@ -43,27 +44,36 @@ public class Searching extends javax.swing.JFrame
                 formWindowOpened(evt);
             }
         });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel1.setText("Select table");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(238, 72, -1, -1));
 
         table_combo.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        getContentPane().add(table_combo, new org.netbeans.lib.awtextra.AbsoluteConstraints(724, 69, 187, -1));
 
         jLabel2.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel2.setText("Enter id");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(238, 176, -1, -1));
 
         id_txt.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        getContentPane().add(id_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(724, 176, 187, -1));
 
         jLabel3.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel3.setText("Enter thing");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(238, 271, -1, -1));
 
         thing_txt.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        getContentPane().add(thing_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(724, 271, 187, -1));
 
         jLabel4.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel4.setText("Enter date");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(238, 370, -1, -1));
 
         date_dtpicker.setDateFormatString("MM/dd/yyyy");
         date_dtpicker.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        getContentPane().add(date_dtpicker, new org.netbeans.lib.awtextra.AbsoluteConstraints(724, 370, 187, -1));
 
         search_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         search_btn.setText("Search");
@@ -72,6 +82,7 @@ public class Searching extends javax.swing.JFrame
                 search_btnActionPerformed(evt);
             }
         });
+        getContentPane().add(search_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(238, 460, -1, -1));
 
         home_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         home_btn.setText("Home");
@@ -80,6 +91,7 @@ public class Searching extends javax.swing.JFrame
                 home_btnActionPerformed(evt);
             }
         });
+        getContentPane().add(home_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(466, 460, -1, -1));
 
         pending_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         pending_btn.setText("Pending");
@@ -88,6 +100,7 @@ public class Searching extends javax.swing.JFrame
                 pending_btnActionPerformed(evt);
             }
         });
+        getContentPane().add(pending_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 460, -1, -1));
 
         show_all_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         show_all_btn.setText("Show all");
@@ -96,63 +109,10 @@ public class Searching extends javax.swing.JFrame
                 show_all_btnActionPerformed(evt);
             }
         });
+        getContentPane().add(show_all_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(877, 460, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(238, 238, 238)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(search_btn)
-                        .addGap(143, 143, 143)
-                        .addComponent(home_btn)
-                        .addGap(129, 129, 129)
-                        .addComponent(pending_btn)
-                        .addGap(96, 96, 96)
-                        .addComponent(show_all_btn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(390, 390, 390)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(id_txt)
-                            .addComponent(thing_txt)
-                            .addComponent(date_dtpicker, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                            .addComponent(table_combo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(228, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(table_combo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(76, 76, 76)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(id_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(64, 64, 64)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(thing_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(68, 68, 68)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(date_dtpicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(65, 65, 65)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(search_btn)
-                    .addComponent(home_btn)
-                    .addComponent(pending_btn)
-                    .addComponent(show_all_btn))
-                .addContainerGap(72, Short.MAX_VALUE))
-        );
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/16067961-Jewelry-earrings-on-light-silk-background-Stock-Vector-jewellery.jpg"))); // NOI18N
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -9, 1310, 1320));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -163,7 +123,6 @@ public class Searching extends javax.swing.JFrame
         {
             public void run()
             {
-                connect = null;
                 new Home().setVisible(true);
                 connect.closeConnection();
                 dispose();
@@ -417,6 +376,7 @@ public class Searching extends javax.swing.JFrame
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JButton pending_btn;
     private javax.swing.JButton search_btn;
     private javax.swing.JButton show_all_btn;

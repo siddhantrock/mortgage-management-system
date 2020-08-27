@@ -69,6 +69,7 @@ public class UpdateRecord extends javax.swing.JFrame
         update_description_btn = new javax.swing.JButton();
         home_btn = new javax.swing.JButton();
         back_btn = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(UpdateRecord.MAXIMIZED_BOTH);
@@ -78,8 +79,11 @@ public class UpdateRecord extends javax.swing.JFrame
             }
         });
 
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jLabel1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel1.setText("Enter id");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 11, -1, -1));
 
         id_txt.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         id_txt.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -87,9 +91,11 @@ public class UpdateRecord extends javax.swing.JFrame
                 id_txtFocusLost(evt);
             }
         });
+        jPanel1.add(id_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(734, 11, 187, -1));
 
         jLabel2.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel2.setText("Enter thing");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 122, -1, -1));
 
         thing_txt.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         thing_txt.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -97,9 +103,11 @@ public class UpdateRecord extends javax.swing.JFrame
                 thing_txtFocusLost(evt);
             }
         });
+        jPanel1.add(thing_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(734, 122, 187, -1));
 
         jLabel3.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel3.setText("Enter type");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 236, -1, -1));
 
         type_combo.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         type_combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gold", "Silver", "Both" }));
@@ -108,9 +116,11 @@ public class UpdateRecord extends javax.swing.JFrame
                 type_comboFocusLost(evt);
             }
         });
+        jPanel1.add(type_combo, new org.netbeans.lib.awtextra.AbsoluteConstraints(734, 236, 187, -1));
 
         jLabel4.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel4.setText("Number of gold");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 351, -1, -1));
 
         n_gold_combo.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         n_gold_combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
@@ -119,9 +129,11 @@ public class UpdateRecord extends javax.swing.JFrame
                 n_gold_comboFocusLost(evt);
             }
         });
+        jPanel1.add(n_gold_combo, new org.netbeans.lib.awtextra.AbsoluteConstraints(734, 351, 187, -1));
 
         jLabel5.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel5.setText("Number of silver");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 465, -1, -1));
 
         n_silver_combo.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         n_silver_combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
@@ -130,9 +142,11 @@ public class UpdateRecord extends javax.swing.JFrame
                 n_silver_comboFocusLost(evt);
             }
         });
+        jPanel1.add(n_silver_combo, new org.netbeans.lib.awtextra.AbsoluteConstraints(734, 465, 187, -1));
 
         jLabel6.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel6.setText("Number of total");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 581, -1, -1));
 
         n_total_combo.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         n_total_combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
@@ -141,9 +155,11 @@ public class UpdateRecord extends javax.swing.JFrame
                 n_total_comboFocusLost(evt);
             }
         });
+        jPanel1.add(n_total_combo, new org.netbeans.lib.awtextra.AbsoluteConstraints(734, 581, 187, -1));
 
         jLabel7.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel7.setText("Enter date");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 714, -1, -1));
 
         date_dtpicker.setDateFormatString("MM/dd/yyyy");
         date_dtpicker.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
@@ -152,9 +168,11 @@ public class UpdateRecord extends javax.swing.JFrame
                 date_dtpickerFocusLost(evt);
             }
         });
+        jPanel1.add(date_dtpicker, new org.netbeans.lib.awtextra.AbsoluteConstraints(734, 714, 187, -1));
 
         jLabel8.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel8.setText("Enter interest");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 836, -1, -1));
 
         interest_txt.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         interest_txt.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -162,9 +180,11 @@ public class UpdateRecord extends javax.swing.JFrame
                 interest_txtFocusLost(evt);
             }
         });
+        jPanel1.add(interest_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(734, 836, 187, -1));
 
         jLabel9.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel9.setText("Gross weight of gold");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 956, -1, -1));
 
         g_gold_txt.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         g_gold_txt.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -172,9 +192,11 @@ public class UpdateRecord extends javax.swing.JFrame
                 g_gold_txtFocusLost(evt);
             }
         });
+        jPanel1.add(g_gold_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(734, 956, 187, -1));
 
         jLabel10.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel10.setText("Gross weight of silver");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 1091, -1, -1));
 
         g_silver_txt.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         g_silver_txt.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -182,9 +204,11 @@ public class UpdateRecord extends javax.swing.JFrame
                 g_silver_txtFocusLost(evt);
             }
         });
+        jPanel1.add(g_silver_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(734, 1091, 187, -1));
 
         jLabel11.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel11.setText("Enter rupess");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 1216, -1, -1));
 
         rupess_txt.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         rupess_txt.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -192,9 +216,11 @@ public class UpdateRecord extends javax.swing.JFrame
                 rupess_txtFocusLost(evt);
             }
         });
+        jPanel1.add(rupess_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(734, 1216, 187, -1));
 
         jLabel12.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel12.setText("Enter description");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 1393, -1, -1));
 
         description_txt.setColumns(20);
         description_txt.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
@@ -206,6 +232,8 @@ public class UpdateRecord extends javax.swing.JFrame
         });
         jScrollPane2.setViewportView(description_txt);
 
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(669, 1347, 252, 124));
+
         update_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         update_btn.setText("Update");
         update_btn.setEnabled(false);
@@ -214,6 +242,7 @@ public class UpdateRecord extends javax.swing.JFrame
                 update_btnActionPerformed(evt);
             }
         });
+        jPanel1.add(update_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 1617, -1, -1));
 
         update_description_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         update_description_btn.setText("Update description");
@@ -223,6 +252,7 @@ public class UpdateRecord extends javax.swing.JFrame
                 update_description_btnActionPerformed(evt);
             }
         });
+        jPanel1.add(update_description_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(965, 1403, -1, -1));
 
         home_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         home_btn.setText("Home");
@@ -231,145 +261,14 @@ public class UpdateRecord extends javax.swing.JFrame
                 home_btnActionPerformed(evt);
             }
         });
+        jPanel1.add(home_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(533, 1617, -1, -1));
 
         back_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         back_btn.setText("Back");
+        jPanel1.add(back_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(829, 1617, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(190, 190, 190)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(update_btn)
-                        .addGap(252, 252, 252)
-                        .addComponent(home_btn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(back_btn)
-                        .addGap(466, 466, 466))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addGap(442, 442, 442)
-                                .addComponent(rupess_txt))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addGap(360, 360, 360)
-                                .addComponent(g_silver_txt))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(366, 366, 366)
-                                .addComponent(g_gold_txt))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(430, 430, 430)
-                                .addComponent(interest_txt))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(458, 458, 458)
-                                .addComponent(date_dtpicker, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(401, 401, 401)
-                                .addComponent(n_total_combo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(398, 398, 398)
-                                .addComponent(n_silver_combo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(404, 404, 404)
-                                .addComponent(n_gold_combo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(457, 457, 457)
-                                .addComponent(type_combo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(448, 448, 448)
-                                .addComponent(thing_txt))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jLabel1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(id_txt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(44, 44, 44)
-                        .addComponent(update_description_btn)
-                        .addGap(210, 210, 210))))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(id_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(80, 80, 80)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(thing_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(83, 83, 83)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(type_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(84, 84, 84)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(n_gold_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(83, 83, 83)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(n_silver_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(85, 85, 85)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(n_total_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(102, 102, 102)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(date_dtpicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(97, 97, 97)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(interest_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(89, 89, 89)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(g_gold_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(104, 104, 104)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
-                    .addComponent(g_silver_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(94, 94, 94)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11)
-                    .addComponent(rupess_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(update_description_btn)
-                        .addGap(368, 368, 368))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(100, 100, 100)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(146, 146, 146)
-                                .addComponent(jLabel12)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(update_btn)
-                            .addComponent(home_btn)
-                            .addComponent(back_btn))
-                        .addGap(154, 154, 154))))
-        );
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/16067961-Jewelry-earrings-on-light-silk-background-Stock-Vector-jewellery.jpg"))); // NOI18N
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1, 1310, 1310));
 
         jScrollPane1.setViewportView(jPanel1);
 
@@ -377,16 +276,13 @@ public class UpdateRecord extends javax.swing.JFrame
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1184, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1194, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1812, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1823, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         pack();
@@ -1034,6 +930,7 @@ public class UpdateRecord extends javax.swing.JFrame
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

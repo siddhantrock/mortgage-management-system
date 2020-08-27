@@ -38,6 +38,7 @@ public class DisplayNotes extends javax.swing.JFrame
         data_report_btn = new javax.swing.JButton();
         back_btn = new javax.swing.JButton();
         home_btn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(DisplayNotes.MAXIMIZED_BOTH);
@@ -46,6 +47,7 @@ public class DisplayNotes extends javax.swing.JFrame
                 formWindowOpened(evt);
             }
         });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -72,6 +74,8 @@ public class DisplayNotes extends javax.swing.JFrame
             jTable1.getColumnModel().getColumn(2).setPreferredWidth(150);
         }
 
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 1181, 238));
+
         delete_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         delete_btn.setText("Delete");
         delete_btn.setEnabled(false);
@@ -80,14 +84,17 @@ public class DisplayNotes extends javax.swing.JFrame
                 delete_btnActionPerformed(evt);
             }
         });
+        getContentPane().add(delete_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 423, -1, -1));
 
         update_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         update_btn.setText("Update");
         update_btn.setEnabled(false);
+        getContentPane().add(update_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(333, 423, -1, -1));
 
         data_report_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         data_report_btn.setText("Data report");
         data_report_btn.setEnabled(false);
+        getContentPane().add(data_report_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(577, 423, -1, -1));
 
         back_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         back_btn.setText("Back");
@@ -96,6 +103,7 @@ public class DisplayNotes extends javax.swing.JFrame
                 back_btnActionPerformed(evt);
             }
         });
+        getContentPane().add(back_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(854, 423, -1, -1));
 
         home_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         home_btn.setText("Home");
@@ -104,42 +112,10 @@ public class DisplayNotes extends javax.swing.JFrame
                 home_btnActionPerformed(evt);
             }
         });
+        getContentPane().add(home_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1051, 423, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(delete_btn)
-                .addGap(207, 207, 207)
-                .addComponent(update_btn)
-                .addGap(153, 153, 153)
-                .addComponent(data_report_btn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
-                .addComponent(back_btn)
-                .addGap(126, 126, 126)
-                .addComponent(home_btn)
-                .addGap(65, 65, 65))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(delete_btn)
-                    .addComponent(update_btn)
-                    .addComponent(data_report_btn)
-                    .addComponent(back_btn)
-                    .addComponent(home_btn))
-                .addGap(91, 91, 91))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/16067961-Jewelry-earrings-on-light-silk-background-Stock-Vector-jewellery.jpg"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -335,6 +311,7 @@ public class DisplayNotes extends javax.swing.JFrame
     private javax.swing.JButton data_report_btn;
     private javax.swing.JButton delete_btn;
     private javax.swing.JButton home_btn;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton update_btn;

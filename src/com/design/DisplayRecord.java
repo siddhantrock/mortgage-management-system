@@ -46,6 +46,7 @@ public class DisplayRecord extends javax.swing.JFrame
         back_btn = new javax.swing.JButton();
         Home_btn = new javax.swing.JButton();
         Pending_btn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(DisplayRecord.MAXIMIZED_BOTH);
@@ -54,6 +55,7 @@ public class DisplayRecord extends javax.swing.JFrame
                 formWindowOpened(evt);
             }
         });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setBorder(new javax.swing.border.MatteBorder(null));
         jTable1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
@@ -87,6 +89,8 @@ public class DisplayRecord extends javax.swing.JFrame
             jTable1.getColumnModel().getColumn(8).setPreferredWidth(400);
         }
 
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 1200, 361));
+
         delete_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         delete_btn.setText("Delete");
         delete_btn.setEnabled(false);
@@ -95,6 +99,7 @@ public class DisplayRecord extends javax.swing.JFrame
                 delete_btnActionPerformed(evt);
             }
         });
+        getContentPane().add(delete_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 438, -1, -1));
 
         update_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         update_btn.setText("Update");
@@ -104,10 +109,12 @@ public class DisplayRecord extends javax.swing.JFrame
                 update_btnActionPerformed(evt);
             }
         });
+        getContentPane().add(update_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(209, 438, -1, -1));
 
         data_report_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         data_report_btn.setText("Data report");
         data_report_btn.setEnabled(false);
+        getContentPane().add(data_report_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(404, 438, -1, -1));
 
         back_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         back_btn.setText("Back");
@@ -116,6 +123,7 @@ public class DisplayRecord extends javax.swing.JFrame
                 back_btnActionPerformed(evt);
             }
         });
+        getContentPane().add(back_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(655, 438, -1, -1));
 
         Home_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         Home_btn.setText("Home");
@@ -124,6 +132,7 @@ public class DisplayRecord extends javax.swing.JFrame
                 Home_btnActionPerformed(evt);
             }
         });
+        getContentPane().add(Home_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 438, -1, -1));
 
         Pending_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         Pending_btn.setText("Pending");
@@ -133,46 +142,10 @@ public class DisplayRecord extends javax.swing.JFrame
                 Pending_btnActionPerformed(evt);
             }
         });
+        getContentPane().add(Pending_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1055, 438, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(delete_btn)
-                        .addGap(89, 89, 89)
-                        .addComponent(update_btn)
-                        .addGap(104, 104, 104)
-                        .addComponent(data_report_btn)
-                        .addGap(122, 122, 122)
-                        .addComponent(back_btn)
-                        .addGap(124, 124, 124)
-                        .addComponent(Home_btn)
-                        .addGap(120, 120, 120)
-                        .addComponent(Pending_btn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(delete_btn)
-                    .addComponent(update_btn)
-                    .addComponent(data_report_btn)
-                    .addComponent(back_btn)
-                    .addComponent(Home_btn)
-                    .addComponent(Pending_btn))
-                .addContainerGap(71, Short.MAX_VALUE))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/16067961-Jewelry-earrings-on-light-silk-background-Stock-Vector-jewellery.jpg"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -463,6 +436,7 @@ public class DisplayRecord extends javax.swing.JFrame
     private javax.swing.JButton back_btn;
     private javax.swing.JButton data_report_btn;
     private javax.swing.JButton delete_btn;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton update_btn;

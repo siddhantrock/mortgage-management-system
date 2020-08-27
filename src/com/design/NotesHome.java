@@ -16,9 +16,11 @@ public class NotesHome extends javax.swing.JFrame
         add_note_btn = new javax.swing.JButton();
         show_note_btn = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(NotesHome.MAXIMIZED_BOTH);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         add_note_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); // NOI18N
         add_note_btn.setText("Add note");
@@ -27,6 +29,7 @@ public class NotesHome extends javax.swing.JFrame
                 add_note_btnActionPerformed(evt);
             }
         });
+        getContentPane().add(add_note_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(268, 248, -1, -1));
 
         show_note_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); // NOI18N
         show_note_btn.setText("Show notes");
@@ -35,6 +38,7 @@ public class NotesHome extends javax.swing.JFrame
                 show_note_btnActionPerformed(evt);
             }
         });
+        getContentPane().add(show_note_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(532, 248, -1, -1));
 
         jButton1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); // NOI18N
         jButton1.setText("Home");
@@ -43,30 +47,10 @@ public class NotesHome extends javax.swing.JFrame
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(818, 248, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(268, 268, 268)
-                .addComponent(add_note_btn)
-                .addGap(127, 127, 127)
-                .addComponent(show_note_btn)
-                .addGap(129, 129, 129)
-                .addComponent(jButton1)
-                .addContainerGap(284, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(248, 248, 248)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(add_note_btn)
-                    .addComponent(show_note_btn)
-                    .addComponent(jButton1))
-                .addContainerGap(252, Short.MAX_VALUE))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/16067961-Jewelry-earrings-on-light-silk-background-Stock-Vector-jewellery.jpg"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -154,6 +138,7 @@ public class NotesHome extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add_note_btn;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton show_note_btn;
     // End of variables declaration//GEN-END:variables
 }

@@ -29,6 +29,7 @@ public class CalculateSum extends javax.swing.JFrame
         calculate_sum_btn = new javax.swing.JButton();
         home_btn = new javax.swing.JButton();
         calculate_profit = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(CalculateSum.MAXIMIZED_BOTH);
@@ -37,17 +38,22 @@ public class CalculateSum extends javax.swing.JFrame
                 formWindowOpened(evt);
             }
         });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel1.setText("Select table");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(305, 137, -1, -1));
 
         table_combo.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        getContentPane().add(table_combo, new org.netbeans.lib.awtextra.AbsoluteConstraints(738, 137, 207, -1));
 
         jLabel2.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         jLabel2.setText("Sum is");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(305, 274, -1, -1));
 
         sum_txt.setEditable(false);
         sum_txt.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        getContentPane().add(sum_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(738, 274, 207, -1));
 
         calculate_sum_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         calculate_sum_btn.setText("Calculate sum");
@@ -56,6 +62,7 @@ public class CalculateSum extends javax.swing.JFrame
                 calculate_sum_btnActionPerformed(evt);
             }
         });
+        getContentPane().add(calculate_sum_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(305, 401, -1, -1));
 
         home_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         home_btn.setText("Home");
@@ -64,6 +71,7 @@ public class CalculateSum extends javax.swing.JFrame
                 home_btnActionPerformed(evt);
             }
         });
+        getContentPane().add(home_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(576, 401, -1, -1));
 
         calculate_profit.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         calculate_profit.setText("Calculate profit");
@@ -72,48 +80,10 @@ public class CalculateSum extends javax.swing.JFrame
                 calculate_profitActionPerformed(evt);
             }
         });
+        getContentPane().add(calculate_profit, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 401, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(305, 305, 305)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(calculate_sum_btn)
-                        .addGap(120, 120, 120)
-                        .addComponent(home_btn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
-                        .addComponent(calculate_profit))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(sum_txt)
-                            .addComponent(table_combo, 0, 207, Short.MAX_VALUE))))
-                .addGap(244, 244, 244))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(137, 137, 137)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(table_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(106, 106, 106)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(sum_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(calculate_sum_btn)
-                    .addComponent(home_btn)
-                    .addComponent(calculate_profit))
-                .addGap(100, 100, 100))
-        );
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/16067961-Jewelry-earrings-on-light-silk-background-Stock-Vector-jewellery.jpg"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -258,6 +228,7 @@ public class CalculateSum extends javax.swing.JFrame
     private javax.swing.JButton home_btn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField sum_txt;
     private javax.swing.JComboBox<String> table_combo;
     // End of variables declaration//GEN-END:variables
