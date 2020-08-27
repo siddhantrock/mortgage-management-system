@@ -34,6 +34,7 @@ public class Searching extends javax.swing.JFrame
         search_btn = new javax.swing.JButton();
         home_btn = new javax.swing.JButton();
         pending_btn = new javax.swing.JButton();
+        show_all_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(Searching.MAXIMIZED_BOTH);
@@ -88,14 +89,30 @@ public class Searching extends javax.swing.JFrame
             }
         });
 
+        show_all_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
+        show_all_btn.setText("Show all");
+        show_all_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                show_all_btnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(238, 238, 238)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(238, 238, 238)
+                        .addComponent(search_btn)
+                        .addGap(143, 143, 143)
+                        .addComponent(home_btn)
+                        .addGap(129, 129, 129)
+                        .addComponent(pending_btn)
+                        .addGap(96, 96, 96)
+                        .addComponent(show_all_btn))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
@@ -106,15 +123,8 @@ public class Searching extends javax.swing.JFrame
                             .addComponent(id_txt)
                             .addComponent(thing_txt)
                             .addComponent(date_dtpicker, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                            .addComponent(table_combo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(371, 371, 371)
-                        .addComponent(search_btn)
-                        .addGap(143, 143, 143)
-                        .addComponent(home_btn)
-                        .addGap(129, 129, 129)
-                        .addComponent(pending_btn)))
-                .addContainerGap(294, Short.MAX_VALUE))
+                            .addComponent(table_combo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(228, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,12 +145,13 @@ public class Searching extends javax.swing.JFrame
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(date_dtpicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(69, 69, 69)
+                .addGap(65, 65, 65)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(search_btn)
                     .addComponent(home_btn)
-                    .addComponent(pending_btn))
-                .addContainerGap(68, Short.MAX_VALUE))
+                    .addComponent(pending_btn)
+                    .addComponent(show_all_btn))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         pack();
@@ -200,7 +211,7 @@ public class Searching extends javax.swing.JFrame
             public void run()
             {
                 int id;
-                String thing,date="";
+                String thing="",date="";
         
                 try
                 {
@@ -212,8 +223,20 @@ public class Searching extends javax.swing.JFrame
                     return;
                 }
                 
-                thing = thing_txt.getText().trim().toUpperCase();
+                try
+                {
+                    thing = thing_txt.getText().trim().toUpperCase();
+                }
+                catch(Exception e)
+                {
+                    JOptionPane.showMessageDialog(Searching.this, "Please enter valid thing");
+                }
                 
+                if(date_dtpicker.getDate() != null)
+                {
+                    SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+                    date = sdf.format(date_dtpicker.getDate());
+                }
                 SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
                 try
                 {
@@ -317,6 +340,39 @@ public class Searching extends javax.swing.JFrame
         
     }//GEN-LAST:event_pending_btnActionPerformed
 
+    private void show_all_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_all_btnActionPerformed
+
+        new Thread(new Runnable()
+        {
+            public void run()
+            {
+                ResultSet rs = connect.showAllRecord(table_combo.getItemAt(table_combo.getSelectedIndex()));
+                
+                try 
+                {
+                    if(rs.next())
+                    {
+                        
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(Searching.this, "No record found");
+                    }
+                }
+                catch (SQLException ex) 
+                {
+                    Logger.getLogger(Searching.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                DisplayRecord dr = new DisplayRecord();
+                dr.setVisible(true);
+                dr.setResultSet(rs,table_combo.getItemAt(table_combo.getSelectedIndex()),connect);
+                dispose();
+            }
+        }).start();
+        
+    }//GEN-LAST:event_show_all_btnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -362,6 +418,7 @@ public class Searching extends javax.swing.JFrame
     private javax.swing.JLabel jLabel4;
     private javax.swing.JButton pending_btn;
     private javax.swing.JButton search_btn;
+    private javax.swing.JButton show_all_btn;
     private javax.swing.JComboBox<String> table_combo;
     private javax.swing.JTextField thing_txt;
     // End of variables declaration//GEN-END:variables

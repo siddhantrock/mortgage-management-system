@@ -292,4 +292,20 @@ public class Connect
         
         return flag;
     }
+    
+    public ResultSet showAllRecord(String table)
+    {
+        ResultSet rs=null;
+        
+        try 
+        {
+            rs = st.executeQuery("select * from " + table);
+        }
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return rs;
+    }
 }
