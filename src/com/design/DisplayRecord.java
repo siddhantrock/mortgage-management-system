@@ -78,8 +78,10 @@ public class DisplayRecord extends javax.swing.JFrame
         jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jTable1.setAutoscrolls(false);
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTable1.setGridColor(new java.awt.Color(0, 0, 0));
+        jTable1.setFocusable(false);
+        jTable1.setGridColor(new java.awt.Color(255, 0, 0));
         jTable1.setRowHeight(28);
+        jTable1.setSelectionForeground(new java.awt.Color(255, 255, 0));
         jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
@@ -89,7 +91,7 @@ public class DisplayRecord extends javax.swing.JFrame
             jTable1.getColumnModel().getColumn(8).setPreferredWidth(400);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 1300, 361));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 1280, 361));
 
         delete_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         delete_btn.setText("Delete");

@@ -488,7 +488,7 @@ public class AddRecord extends javax.swing.JFrame
             {
                 if(n_gold_combo.getSelectedIndex() >= 0)
                 {
-                    total = Integer.parseInt(n_gold_combo.getItemAt(n_gold_combo.getSelectedIndex()));
+                    total += Integer.parseInt(n_gold_combo.getItemAt(n_gold_combo.getSelectedIndex()));
                 }
 
                 n_total_combo.setSelectedIndex(total);
@@ -505,7 +505,7 @@ public class AddRecord extends javax.swing.JFrame
             {
                 if(n_silver_combo.getSelectedIndex() >= 0)
                 {
-                    total = Integer.parseInt(n_silver_combo.getItemAt(n_silver_combo.getSelectedIndex()));
+                    total += Integer.parseInt(n_silver_combo.getItemAt(n_silver_combo.getSelectedIndex()));
                 }
                 
                 n_total_combo.setSelectedIndex(total);
