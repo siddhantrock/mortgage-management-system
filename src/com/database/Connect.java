@@ -267,6 +267,38 @@ public class Connect
         
         return rs;
     }
+    public ResultSet getNotes(String table, int id)
+    {
+        ResultSet rs = null;
+        
+        try 
+        {
+            rs = st.executeQuery("select * from " + table + " where id = " + id);
+        }
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return rs;
+    }
+    
+    public boolean updateNote(String query)
+    {
+        boolean flag=false;
+        
+        try 
+        {
+            st.execute(query);
+            flag = true;
+        }
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return flag;
+    }
     
     public boolean deleteNote(int id , String note_1)
     {

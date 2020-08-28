@@ -70,11 +70,11 @@ public class DisplayNotes extends javax.swing.JFrame
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setPreferredWidth(70);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(1100);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(1000);
             jTable1.getColumnModel().getColumn(2).setPreferredWidth(150);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 1181, 238));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 20, 1200, 238));
 
         delete_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         delete_btn.setText("Delete");
@@ -89,6 +89,11 @@ public class DisplayNotes extends javax.swing.JFrame
         update_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         update_btn.setText("Update");
         update_btn.setEnabled(false);
+        update_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                update_btnActionPerformed(evt);
+            }
+        });
         getContentPane().add(update_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(333, 423, -1, -1));
 
         data_report_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
@@ -270,6 +275,20 @@ public class DisplayNotes extends javax.swing.JFrame
         }).start();
         
     }//GEN-LAST:event_delete_btnActionPerformed
+
+    private void update_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_btnActionPerformed
+
+        new Thread(new Runnable()
+        {
+            public void run()
+            {
+                UpdateNote un = new UpdateNote();
+                un.setVisible(true);
+                un.setData(id, DisplayNotes.this, connect);;
+            }
+        }).start();
+        
+    }//GEN-LAST:event_update_btnActionPerformed
 
     /**
      * @param args the command line arguments

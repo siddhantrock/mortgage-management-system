@@ -29,7 +29,7 @@ public class NotesHome extends javax.swing.JFrame
                 add_note_btnActionPerformed(evt);
             }
         });
-        getContentPane().add(add_note_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(268, 248, -1, -1));
+        getContentPane().add(add_note_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, -1, -1));
 
         show_note_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); // NOI18N
         show_note_btn.setText("Show notes");
@@ -38,7 +38,7 @@ public class NotesHome extends javax.swing.JFrame
                 show_note_btnActionPerformed(evt);
             }
         });
-        getContentPane().add(show_note_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(532, 248, -1, -1));
+        getContentPane().add(show_note_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 350, -1, -1));
 
         jButton1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); // NOI18N
         jButton1.setText("Home");
@@ -47,7 +47,7 @@ public class NotesHome extends javax.swing.JFrame
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(818, 248, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 350, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/16067961-Jewelry-earrings-on-light-silk-background-Stock-Vector-jewellery.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));

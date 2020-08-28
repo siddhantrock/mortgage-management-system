@@ -89,7 +89,7 @@ public class DisplayRecord extends javax.swing.JFrame
             jTable1.getColumnModel().getColumn(8).setPreferredWidth(400);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 1200, 361));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 1300, 361));
 
         delete_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         delete_btn.setText("Delete");

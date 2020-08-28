@@ -103,7 +103,10 @@ public class CalculateSum extends javax.swing.JFrame
                 {
                     while(rs.next())
                     {
-                        table_combo.addItem(rs.getString(1));
+                        if(rs.getString(1).length() == 10 || rs.getString(1).length() == 12)
+                        {
+                            table_combo.addItem(rs.getString(1));
+                        }
                         
                         if(rs.getString(1).length() == 12)
                         {
@@ -168,6 +171,11 @@ public class CalculateSum extends javax.swing.JFrame
             public void run()
             {
                 String table =(String) JOptionPane.showInputDialog(CalculateSum.this, "please select table","",JOptionPane.PLAIN_MESSAGE,null, obj,"");
+                
+                if(table == null)
+                {
+                    return;
+                }
                 
                 ResultSet rs = connect.calculateThingProfit(table);
                 

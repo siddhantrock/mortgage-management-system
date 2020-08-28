@@ -813,12 +813,12 @@ public class UpdateRecord extends javax.swing.JFrame
                 
                 if(thing_check == true)
                 {
-                    query += " , thing = '" + thing_txt.getText() + "'";
+                    query += " , thing = '" + thing_txt.getText().toUpperCase() + "'";
                 }
                 
                 if(type_check == true)
                 {
-                    query += " , type = '" + type_combo.getItemAt(type_combo.getSelectedIndex()) + "'";
+                    query += " , type = '" + type_combo.getItemAt(type_combo.getSelectedIndex()).toUpperCase() + "'";
                 }
                 
                 if(n_gold_check == true)
