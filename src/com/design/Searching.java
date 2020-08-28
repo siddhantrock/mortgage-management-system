@@ -317,6 +317,7 @@ public class Searching extends javax.swing.JFrame
                     else
                     {
                         JOptionPane.showMessageDialog(Searching.this, "No record found");
+                        return;
                     }
                 }
                 catch (SQLException ex) 
