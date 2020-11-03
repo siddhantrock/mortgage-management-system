@@ -159,7 +159,7 @@ public class DisplayRecord extends javax.swing.JFrame
             public void run()
             {
                 ArrayList<Thing> al = new ArrayList();
-                int total_rs = 0 , total_si = 0 , tota_total = 0;
+                int total_rs = 0 , total_si = 0 , total_total = 0;
                 
                 try 
                 {
@@ -199,7 +199,7 @@ public class DisplayRecord extends javax.swing.JFrame
                     
                     
                     obj[7] = Integer.parseInt(data[1]) + al.get(i).getRupess();
-                    tota_total += Integer.parseInt(data[1]) + al.get(i).getRupess();
+                    total_total += Integer.parseInt(data[1]) + al.get(i).getRupess();
                     
                     obj[8] = al.get(i).getDescription();
                     
@@ -221,13 +221,13 @@ public class DisplayRecord extends javax.swing.JFrame
                 model1.addRow(obj);
                 
                 obj[0] = "";
-                obj[1] = "Total";
+                obj[1] = "Total = " + al.size();
                 obj[2] = "";
                 obj[3] = total_rs;
                 obj[4] = "";
                 obj[5] = "";
                 obj[6] = total_si;
-                obj[7] = tota_total;
+                obj[7] = total_total;
                 obj[8] = "";
                 
                 model1.addRow(obj);
