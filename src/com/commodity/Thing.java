@@ -262,7 +262,7 @@ public class Thing
     {
         boolean flag = false;
         
-        flag = connect.updateRecord("update " + table + " set description = '" + data + "'");
+        flag = connect.updateRecord("update " + table + " set description = '" + data + "' where id = " + id);
         
         return flag;
     }

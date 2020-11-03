@@ -359,6 +359,7 @@ public class UpdateRecord extends javax.swing.JFrame
                 if(flag == true)
                 {
                     JOptionPane.showMessageDialog(UpdateRecord.this, "Description updation successfull");
+                    new Home().setVisible(true);
                     connect.closeConnection();
                     dispose();
                     display_record.dispose();
