@@ -384,11 +384,12 @@ public class UpdateRecord extends javax.swing.JFrame
                     if(description_txt.getText().equals(rs.getString("description")))
                     {
                         update_description_btn.setEnabled(false);
-                        description_txt.setText(description_txt.getText().toUpperCase());
+                        
                     }
                     else
                     {
                         update_description_btn.setEnabled(true);
+                        description_txt.setText(description_txt.getText().toUpperCase());
                     }
                 }
                 catch (SQLException ex) 
