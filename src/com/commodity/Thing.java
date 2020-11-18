@@ -323,6 +323,10 @@ public class Thing
                     total_days_difference -= 28;
                 }
             }
+            else
+            {
+                break;
+            }
             
             start_month++;
             
