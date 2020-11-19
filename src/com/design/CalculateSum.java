@@ -95,7 +95,7 @@ public class CalculateSum extends javax.swing.JFrame
             public void run()
             {
                 connect = new Connect();
-                ArrayList<Object> al=null;
+                ArrayList<Object> al = new ArrayList();
                 
                 ResultSet rs = connect.showTables();
                 
@@ -110,7 +110,6 @@ public class CalculateSum extends javax.swing.JFrame
                         
                         if(rs.getString(1).length() == 12)
                         {
-                            al = new ArrayList();
                             al.add(rs.getString(1));
                         }
                     }
