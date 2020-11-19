@@ -160,17 +160,33 @@ public class DisplayRecord extends javax.swing.JFrame
             {
                 ArrayList<Thing> al = new ArrayList();
                 int total_rs = 0 , total_si = 0 , total_total = 0;
+                ArrayList<String> release_date = new ArrayList();
                 
                 try 
                 {
-                    do
+                    if(table.length() == 10)
                     {
-                        Thing thing = new Thing(resultset.getInt("id"),resultset.getString("thing"),resultset.getString("type"),
+                        do
+                        {
+                                Thing thing = new Thing(resultset.getInt("id"),resultset.getString("thing"),resultset.getString("type"),
                                 resultset.getInt("n_gold"),resultset.getInt("n_silver"),resultset.getInt("n_total"),
                                 resultset.getString("date1"),resultset.getFloat("interest"),resultset.getFloat("g_gold"),
                                 resultset.getFloat("g_silver"),resultset.getInt("rupess"),resultset.getString("description"));
-                        al.add(thing);
-                    }while(resultset.next());
+                                al.add(thing);
+                        }while(resultset.next());
+                    }
+                    else if(table.length() == 12)
+                    {
+                        do
+                        {
+                                Thing thing = new Thing(resultset.getInt("id"),resultset.getString("thing"),resultset.getString("type"),
+                                resultset.getInt("n_gold"),resultset.getInt("n_silver"),resultset.getInt("n_total"),
+                                resultset.getString("date1"),resultset.getFloat("interest"),resultset.getFloat("g_gold"),
+                                resultset.getFloat("g_silver"),resultset.getInt("rupess"),resultset.getString("description"));
+                                al.add(thing);
+                                release_date.add(resultset.getString("date2"));
+                        }while(resultset.next());
+                    }
                 }
                 catch (SQLException ex) 
                 {
@@ -190,7 +206,15 @@ public class DisplayRecord extends javax.swing.JFrame
                     
                     obj[4] = al.get(i).getInterest();
                     
-                    String data[] = Thing.dateDifference(al.get(i).getDate(), al.get(i).getInterest(), al.get(i).getRupess());
+                    String data[] = new String[2];
+                    if(table.length() == 10)
+                    {
+                        data = Thing.dateDifference(al.get(i).getDate(), al.get(i).getInterest(), al.get(i).getRupess(),table,"");
+                    }
+                    else if(table.length() == 12)
+                    {
+                        data = Thing.dateDifference(al.get(i).getDate(), al.get(i).getInterest(), al.get(i).getRupess(),table,release_date.get(i));
+                    }
                     
                     obj[5] = data[0];
                     

@@ -277,14 +277,22 @@ public class Thing
         return flag;
     }
     
-    public static String[] dateDifference(String date , float rate , int rupess)
+    public static String[] dateDifference(String date , float rate , int rupess , String table , String release_date)
     {
-        int total_days_difference , days , months = 0 , years = 0 , start_month , start_year;
+        int total_days_difference = 0 , days , months = 0 , years = 0 , start_month , start_year;
         float interest=0,si;
         String date_difference_string = "";
         String data[] = new String[2];
         
-        total_days_difference = (int)((new Date().getTime() - new Date(date).getTime())/(1000*60*60*24));
+        if(table.length() == 10)
+        {
+            total_days_difference = (int)((new Date().getTime() - new Date(date).getTime())/(1000*60*60*24));
+        }
+        else if(table.length() == 12)
+        {
+            total_days_difference = (int)((new Date(release_date).getTime() - new Date(date).getTime())/(1000*60*60*24));
+        }
+        
         start_month = Integer.parseInt(date.substring(0, 2));
         start_year = Integer.parseInt(date.substring(6));
         
@@ -387,7 +395,8 @@ public class Thing
                 else
                 {
                     year_month = months - years*12;
-                    temp--;
+                    //temp--;
+                    temp = 0;
                 }
             }
             date_difference_string = years + " year";

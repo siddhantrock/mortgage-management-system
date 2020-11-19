@@ -9,7 +9,6 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import java.util.HashMap;
 
 public class AddRecord extends javax.swing.JFrame 
 {
@@ -439,7 +438,7 @@ public class AddRecord extends javax.swing.JFrame
                 {
                     case "GOLD":
                         n_gold_combo.setEnabled(true);
-                        n_gold_combo.setSelectedIndex(-1);
+                        n_gold_combo.setSelectedIndex(0);
                         g_gold_txt.setEnabled(true);
                         g_gold_txt.setText("");
                         n_silver_combo.setSelectedIndex(0);
@@ -452,7 +451,7 @@ public class AddRecord extends javax.swing.JFrame
                     
                     case "SILVER":
                         n_silver_combo.setEnabled(true);
-                        n_silver_combo.setSelectedIndex(-1);
+                        n_silver_combo.setSelectedIndex(0);
                         g_silver_txt.setEnabled(true);
                         g_silver_txt.setText("");
                         n_gold_combo.setSelectedIndex(0);
@@ -465,12 +464,12 @@ public class AddRecord extends javax.swing.JFrame
                         
                     case "BOTH":
                         n_gold_combo.setEnabled(true);
-                        n_gold_combo.setSelectedIndex(-1);
+                        n_gold_combo.setSelectedIndex(0);
                         g_gold_txt.setEnabled(true);
                         g_gold_txt.setText("");
                         
                         n_silver_combo.setEnabled(true);
-                        n_silver_combo.setSelectedIndex(-1);
+                        n_silver_combo.setSelectedIndex(0);
                         g_silver_txt.setEnabled(true);
                         g_silver_txt.setText("");
                         n_total_combo.setSelectedIndex(0);
