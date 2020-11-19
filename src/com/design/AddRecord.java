@@ -14,7 +14,6 @@ import java.util.HashMap;
 public class AddRecord extends javax.swing.JFrame 
 {
     Connect connect;
-    int total;
     
     public AddRecord() 
     {
@@ -448,6 +447,7 @@ public class AddRecord extends javax.swing.JFrame
                         n_total_combo.setEnabled(false);
                         g_silver_txt.setText("0");
                         g_silver_txt.setEnabled(false);
+                        n_total_combo.setSelectedIndex(0);
                         break;
                     
                     case "SILVER":
@@ -460,6 +460,7 @@ public class AddRecord extends javax.swing.JFrame
                         n_total_combo.setEnabled(false);
                         g_gold_txt.setText("0");
                         g_gold_txt.setEnabled(false);
+                        n_total_combo.setSelectedIndex(0);
                         break;
                         
                     case "BOTH":
@@ -472,6 +473,7 @@ public class AddRecord extends javax.swing.JFrame
                         n_silver_combo.setSelectedIndex(-1);
                         g_silver_txt.setEnabled(true);
                         g_silver_txt.setText("");
+                        n_total_combo.setSelectedIndex(0);
                     default:
                         break;
                 }
@@ -485,13 +487,15 @@ public class AddRecord extends javax.swing.JFrame
         new Thread(new Runnable()
         {
             public void run()
-            {
-                if(n_gold_combo.getSelectedIndex() >= 0)
+            {   
+                if(n_silver_combo.isEnabled() == false)
                 {
-                    total += Integer.parseInt(n_gold_combo.getItemAt(n_gold_combo.getSelectedIndex()));
+                    n_total_combo.setSelectedIndex(n_gold_combo.getSelectedIndex());
                 }
-
-                n_total_combo.setSelectedIndex(total);
+                else
+                {
+                    n_total_combo.setSelectedIndex(n_gold_combo.getSelectedIndex() + n_silver_combo.getSelectedIndex());
+                }
             }
         }).start();
         
@@ -503,12 +507,14 @@ public class AddRecord extends javax.swing.JFrame
         {
             public void run()
             {
-                if(n_silver_combo.getSelectedIndex() >= 0)
+                if(n_gold_combo.isEnabled() == false)
                 {
-                    total += Integer.parseInt(n_silver_combo.getItemAt(n_silver_combo.getSelectedIndex()));
+                    n_total_combo.setSelectedIndex(n_silver_combo.getSelectedIndex());
                 }
-                
-                n_total_combo.setSelectedIndex(total);
+                else
+                {
+                    n_total_combo.setSelectedIndex(n_gold_combo.getSelectedIndex() + n_silver_combo.getSelectedIndex());
+                }
             }
         }).start();
         
