@@ -220,19 +220,31 @@ public class Connect
         return rs;
     }
     
-    public ResultSet calculateThingProfit(String table)
+    public int calculateThingProfit(String year)throws Exception
     {
-        ResultSet rs=null;
         
-        try 
+        ResultSet rs = showTables();
+        int sum = 0;
+        
+        while(rs.next())
         {
-            rs = st.executeQuery("select sum(rupess2 - rupess) from " + table);
+            if(rs.getString(1).length() == 12)
+            {
+                Statement st1 = con.createStatement();
+                ResultSet temp = st1.executeQuery("select sum(rupess2 - rupess) from " + rs.getString(1) + " where substring(date2,7,4) = '" + year + "'");
+                
+                if(temp.next())
+                {
+                    sum += temp.getInt(1);
+                }
+                st1.close();
+                temp.close();
+            }
         }
-        catch (SQLException ex) 
-        {
-            Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return rs;
+        
+        rs.close();
+        
+        return sum;
     }
     
     public boolean addNote(String data, String date)

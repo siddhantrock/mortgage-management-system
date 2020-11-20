@@ -11,7 +11,6 @@ import javax.swing.JOptionPane;
 public class CalculateSum extends javax.swing.JFrame 
 {
     Connect connect;
-    Object[] obj;
     
     public CalculateSum() 
     {
@@ -95,7 +94,6 @@ public class CalculateSum extends javax.swing.JFrame
             public void run()
             {
                 connect = new Connect();
-                ArrayList<Object> al = new ArrayList();
                 
                 ResultSet rs = connect.showTables();
                 
@@ -107,14 +105,7 @@ public class CalculateSum extends javax.swing.JFrame
                         {
                             table_combo.addItem(rs.getString(1));
                         }
-                        
-                        if(rs.getString(1).length() == 12)
-                        {
-                            al.add(rs.getString(1));
-                        }
                     }
-                    
-                    obj = al.toArray();
                 }
                 catch (SQLException ex) 
                 {
@@ -169,23 +160,20 @@ public class CalculateSum extends javax.swing.JFrame
         {
             public void run()
             {
-                String table =(String) JOptionPane.showInputDialog(CalculateSum.this, "please select table","",JOptionPane.PLAIN_MESSAGE,null, obj,"");
+                String year =(String) JOptionPane.showInputDialog(CalculateSum.this, "please enter year");
                 
-                if(table == null)
+                if(year == null)
                 {
                     return;
                 }
                 
-                ResultSet rs = connect.calculateThingProfit(table);
-                
-                try 
+                try
                 {
-                    if(rs.next())
-                    {
-                        JOptionPane.showMessageDialog(CalculateSum.this, "Profit = " + rs.getInt(1));
-                    }
+                    
+                    int sum = connect.calculateThingProfit(year);        
+                    JOptionPane.showMessageDialog(CalculateSum.this, "Profit = " + sum);
                 }
-                catch (SQLException ex) 
+                catch (Exception ex) 
                 {
                     JOptionPane.showMessageDialog(CalculateSum.this, "Something went wrong please try again later");
                 }
