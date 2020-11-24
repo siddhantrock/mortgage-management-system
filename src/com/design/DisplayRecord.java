@@ -1,7 +1,23 @@
 package com.design;
 
 import com.commodity.Thing;
+import java.util.HashMap;
 import com.database.Connect;
+import com.itextpdf.kernel.colors.DeviceCmyk;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.borders.Border;
+import com.itextpdf.layout.element.AreaBreak;
+import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.property.AreaBreakType;
+import com.itextpdf.layout.property.TextAlignment;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -21,6 +37,8 @@ public class DisplayRecord extends javax.swing.JFrame
     ResultSet resultset;
     int id,row=-1;
     String table,pending_year=null;
+    HashMap<Integer, String> hash_date_diff = new HashMap();
+    HashMap<Integer, String> hash_si = new HashMap();
     
     public DisplayRecord() 
     {
@@ -116,6 +134,11 @@ public class DisplayRecord extends javax.swing.JFrame
         data_report_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         data_report_btn.setText("Data report");
         data_report_btn.setEnabled(false);
+        data_report_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                data_report_btnActionPerformed(evt);
+            }
+        });
         getContentPane().add(data_report_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(404, 438, -1, -1));
 
         back_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
@@ -195,6 +218,7 @@ public class DisplayRecord extends javax.swing.JFrame
                 
                 Object[] obj = new Object[9];
                 DefaultTableModel model1 = (DefaultTableModel)jTable1.getModel();
+                String data[] = new String[2];
                 
                 for(int i=0;i<al.size();i++)
                 {   
@@ -206,7 +230,7 @@ public class DisplayRecord extends javax.swing.JFrame
                     
                     obj[4] = al.get(i).getInterest();
                     
-                    String data[] = new String[2];
+                    
                     if(table.length() == 10)
                     {
                         data = Thing.dateDifference(al.get(i).getDate(), al.get(i).getInterest(), al.get(i).getRupess(),table,"");
@@ -217,10 +241,11 @@ public class DisplayRecord extends javax.swing.JFrame
                     }
                     
                     obj[5] = data[0];
+                    hash_date_diff.put(al.get(i).getId(),data[0]);
                     
                     obj[6] = data[1];
                     total_si += Integer.parseInt(data[1]);
-                    
+                    hash_si.put(al.get(i).getId(),data[1]);
                     
                     obj[7] = Integer.parseInt(data[1]) + al.get(i).getRupess();
                     total_total += Integer.parseInt(data[1]) + al.get(i).getRupess();
@@ -275,6 +300,10 @@ public class DisplayRecord extends javax.swing.JFrame
                             {
                                 delete_btn.setEnabled(true);
                                 update_btn.setEnabled(true);
+                                data_report_btn.setEnabled(true);
+                            }
+                            else if(table.length() == 12)
+                            {
                                 data_report_btn.setEnabled(true);
                             }
                                  
@@ -420,6 +449,366 @@ public class DisplayRecord extends javax.swing.JFrame
         }).start();
         
     }//GEN-LAST:event_update_btnActionPerformed
+
+    private void data_report_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_data_report_btnActionPerformed
+
+        new Thread(new Runnable()
+        {
+            public void run()
+            {
+                String file_name = "Report.pdf";
+                Thing thing = new Thing(id);
+                ResultSet rs = thing.retriveThing(connect, table, false, false);
+                
+                try 
+                {
+                    if(rs.next())
+                    {
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(DisplayRecord.this, "Something went wrong please try again later");
+                    }
+                }
+                catch (SQLException ex) 
+                {
+                    Logger.getLogger(DisplayRecord.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                PdfWriter writer=null;
+        
+                try 
+                {
+                  writer = new PdfWriter(file_name);
+                }
+                catch (FileNotFoundException ex) 
+                {
+                   //Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        
+                PdfDocument pdfDoc=new PdfDocument(writer);
+        
+                Document document = new Document(pdfDoc);
+         
+                float cloumn[]={500f,500f};
+                Table table1=new Table(cloumn);
+                
+                Cell id_c = new Cell();
+                id_c.add(new Paragraph("ID").setBold());
+                id_c.setBorder(Border.NO_BORDER);
+                id_c.setTextAlignment(TextAlignment.CENTER);
+                id_c.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                table1.addCell(id_c);
+                
+                Cell id_c1 = new Cell();
+                try {
+                    id_c1.add(new Paragraph(rs.getInt("id")+""));
+                } catch (SQLException ex) {
+                    Logger.getLogger(DisplayRecord.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                id_c1.setBorder(Border.NO_BORDER);
+                id_c1.setTextAlignment(TextAlignment.CENTER);
+                id_c1.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                table1.addCell(id_c1);
+                
+                Cell thing_c = new Cell();
+                thing_c.add(new Paragraph("Thing").setBold());
+                thing_c.setBorder(Border.NO_BORDER);
+                thing_c.setTextAlignment(TextAlignment.CENTER);
+                thing_c.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                table1.addCell(thing_c);
+                
+                Cell thing_c1 = new Cell();
+                try {
+                    thing_c1.add(new Paragraph(rs.getString("thing")));
+                } catch (SQLException ex) {
+                    Logger.getLogger(DisplayRecord.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                thing_c1.setBorder(Border.NO_BORDER);
+                thing_c1.setTextAlignment(TextAlignment.CENTER);
+                thing_c1.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                table1.addCell(thing_c1);
+                
+                Cell type_c = new Cell();
+                type_c.add(new Paragraph("Type").setBold());
+                type_c.setBorder(Border.NO_BORDER);
+                type_c.setTextAlignment(TextAlignment.CENTER);
+                type_c.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                table1.addCell(type_c);
+                
+                Cell type_c1 = new Cell();
+                try {
+                    type_c1.add(new Paragraph(rs.getString("type")));
+                } catch (SQLException ex) {
+                    Logger.getLogger(DisplayRecord.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                type_c1.setBorder(Border.NO_BORDER);
+                type_c1.setTextAlignment(TextAlignment.CENTER);
+                type_c1.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                table1.addCell(type_c1);
+                
+                Cell n_gold_c = new Cell();
+                n_gold_c.add(new Paragraph("Number of gold").setBold());
+                n_gold_c.setBorder(Border.NO_BORDER);
+                n_gold_c.setTextAlignment(TextAlignment.CENTER);
+                n_gold_c.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                table1.addCell(n_gold_c);
+                
+                Cell n_gold_c1 = new Cell();
+                try {
+                    n_gold_c1.add(new Paragraph(rs.getInt("n_gold") + ""));
+                } catch (SQLException ex) {
+                    Logger.getLogger(DisplayRecord.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                n_gold_c1.setBorder(Border.NO_BORDER);
+                n_gold_c1.setTextAlignment(TextAlignment.CENTER);
+                n_gold_c1.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                table1.addCell(n_gold_c1);
+                
+                Cell n_silver_c = new Cell();
+                n_silver_c.add(new Paragraph("Number of silver").setBold());
+                n_silver_c.setBorder(Border.NO_BORDER);
+                n_silver_c.setTextAlignment(TextAlignment.CENTER);
+                n_silver_c.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                table1.addCell(n_silver_c);
+                
+                Cell n_silver_c1 = new Cell();
+                try {
+                    n_silver_c1.add(new Paragraph(rs.getInt("n_silver")+""));
+                } catch (SQLException ex) {
+                    Logger.getLogger(DisplayRecord.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                n_silver_c1.setBorder(Border.NO_BORDER);
+                n_silver_c1.setTextAlignment(TextAlignment.CENTER);
+                n_silver_c1.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                table1.addCell(n_silver_c1);
+                
+                Cell n_total_c = new Cell();
+                n_total_c.add(new Paragraph("Number of total").setBold());
+                n_total_c.setBorder(Border.NO_BORDER);
+                n_total_c.setTextAlignment(TextAlignment.CENTER);
+                n_total_c.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                table1.addCell(n_total_c);
+                
+                Cell n_total_c1 = new Cell();
+                try {
+                    n_total_c1.add(new Paragraph(rs.getInt("n_total")+""));
+                } catch (SQLException ex) {
+                    Logger.getLogger(DisplayRecord.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                n_total_c1.setBorder(Border.NO_BORDER);
+                n_total_c1.setTextAlignment(TextAlignment.CENTER);
+                n_total_c1.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                table1.addCell(n_total_c1);
+                
+                Cell thing_date_c = new Cell();
+                thing_date_c.add(new Paragraph("Date").setBold());
+                thing_date_c.setBorder(Border.NO_BORDER);
+                thing_date_c.setTextAlignment(TextAlignment.CENTER);
+                thing_date_c.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                table1.addCell(thing_date_c);
+                
+                Cell thing_date_c1 = new Cell();
+                try {
+                    thing_date_c1.add(new Paragraph(rs.getString("date1")));
+                } catch (SQLException ex) {
+                    Logger.getLogger(DisplayRecord.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                thing_date_c1.setBorder(Border.NO_BORDER);
+                thing_date_c1.setTextAlignment(TextAlignment.CENTER);
+                thing_date_c1.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                table1.addCell(thing_date_c1);
+                
+                Cell interest_c = new Cell();
+                interest_c.add(new Paragraph("Interest").setBold());
+                interest_c.setBorder(Border.NO_BORDER);
+                interest_c.setTextAlignment(TextAlignment.CENTER);
+                interest_c.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                table1.addCell(interest_c);
+                
+                Cell interest_c1 = new Cell();
+                try {
+                    interest_c1.add(new Paragraph(rs.getInt("interest")+""));
+                } catch (SQLException ex) {
+                    Logger.getLogger(DisplayRecord.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                interest_c1.setBorder(Border.NO_BORDER);
+                interest_c1.setTextAlignment(TextAlignment.CENTER);
+                interest_c1.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                table1.addCell(interest_c1);
+                
+                Cell g_gold_c = new Cell();
+                g_gold_c.add(new Paragraph("Gross weight of gold").setBold());
+                g_gold_c.setBorder(Border.NO_BORDER);
+                g_gold_c.setTextAlignment(TextAlignment.CENTER);
+                g_gold_c.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                table1.addCell(g_gold_c);
+                
+                Cell g_gold_c1 = new Cell();
+                try {
+                    g_gold_c1.add(new Paragraph(rs.getInt("g_gold")+""));
+                } catch (SQLException ex) {
+                    Logger.getLogger(DisplayRecord.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                g_gold_c1.setBorder(Border.NO_BORDER);
+                g_gold_c1.setTextAlignment(TextAlignment.CENTER);
+                g_gold_c1.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                table1.addCell(g_gold_c1);
+                
+                Cell g_silver_c = new Cell();
+                g_silver_c.add(new Paragraph("Gross weight of silver").setBold());
+                g_silver_c.setBorder(Border.NO_BORDER);
+                g_silver_c.setTextAlignment(TextAlignment.CENTER);
+                g_silver_c.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                table1.addCell(g_silver_c);
+                
+                Cell g_silver_c1 = new Cell();
+                try {
+                    g_silver_c1.add(new Paragraph(rs.getInt("n_silver")+""));
+                } catch (SQLException ex) {
+                    Logger.getLogger(DisplayRecord.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                g_silver_c1.setBorder(Border.NO_BORDER);
+                g_silver_c1.setTextAlignment(TextAlignment.CENTER);
+                g_silver_c1.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                table1.addCell(g_silver_c1);
+                
+                Cell rupess_c = new Cell();
+                rupess_c.add(new Paragraph("Rupess").setBold());
+                rupess_c.setBorder(Border.NO_BORDER);
+                rupess_c.setTextAlignment(TextAlignment.CENTER);
+                rupess_c.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                table1.addCell(rupess_c);
+                
+                Cell rupess_c1 = new Cell();
+                try {
+                    rupess_c1.add(new Paragraph(rs.getInt("rupess")+""));
+                } catch (SQLException ex) {
+                    Logger.getLogger(DisplayRecord.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                rupess_c1.setBorder(Border.NO_BORDER);
+                rupess_c1.setTextAlignment(TextAlignment.CENTER);
+                rupess_c1.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                table1.addCell(rupess_c1);
+                
+                Cell date_diff_c = new Cell();
+                date_diff_c.add(new Paragraph("Date difference").setBold());
+                date_diff_c.setBorder(Border.NO_BORDER);
+                date_diff_c.setTextAlignment(TextAlignment.CENTER);
+                date_diff_c.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                table1.addCell(date_diff_c);
+                
+                Cell date_diff_c1 = new Cell();
+                date_diff_c1.add(new Paragraph(hash_date_diff.get(id)));
+                date_diff_c1.setBorder(Border.NO_BORDER);
+                date_diff_c1.setTextAlignment(TextAlignment.CENTER);
+                date_diff_c1.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                table1.addCell(date_diff_c1);
+                
+                Cell si_c = new Cell();
+                si_c.add(new Paragraph("SI/CI Interest").setBold());
+                si_c.setBorder(Border.NO_BORDER);
+                si_c.setTextAlignment(TextAlignment.CENTER);
+                si_c.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                table1.addCell(si_c);
+                
+                Cell si_c1 = new Cell();
+                si_c1.add(new Paragraph(hash_si.get(id)));
+                si_c1.setBorder(Border.NO_BORDER);
+                si_c1.setTextAlignment(TextAlignment.CENTER);
+                si_c1.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                table1.addCell(si_c1);
+                
+                Cell total_c = new Cell();
+                total_c.add(new Paragraph("Total Rupess").setBold());
+                total_c.setBorder(Border.NO_BORDER);
+                total_c.setTextAlignment(TextAlignment.CENTER);
+                total_c.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                table1.addCell(total_c);
+                
+                Cell total_c1 = new Cell();
+                try {
+                    total_c1.add(new Paragraph((rs.getInt("rupess") + Integer.parseInt(hash_si.get(id)))+""));
+                } catch (SQLException ex) {
+                    Logger.getLogger(DisplayRecord.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                total_c1.setBorder(Border.NO_BORDER);
+                total_c1.setTextAlignment(TextAlignment.CENTER);
+                total_c1.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                table1.addCell(total_c1);
+                
+                if(table.length() == 12)
+                {
+                    Cell release_rupess_c = new Cell();
+                    release_rupess_c.add(new Paragraph("Rupess on releasing thing").setBold());
+                    release_rupess_c.setBorder(Border.NO_BORDER);
+                    release_rupess_c.setTextAlignment(TextAlignment.CENTER);
+                    release_rupess_c.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                    table1.addCell(release_rupess_c);
+                
+                    Cell release_rupess_c1 = new Cell();
+                    try {
+                        release_rupess_c1.add(new Paragraph((rs.getInt("rupess2") + "")));
+                    } catch (SQLException ex) {
+                        Logger.getLogger(DisplayRecord.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    release_rupess_c1.setBorder(Border.NO_BORDER);
+                    release_rupess_c1.setTextAlignment(TextAlignment.CENTER);
+                    release_rupess_c1.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                    table1.addCell(release_rupess_c1);
+                    
+                    Cell release_date_c = new Cell();
+                    release_date_c.add(new Paragraph("Released date").setBold());
+                    release_date_c.setBorder(Border.NO_BORDER);
+                    release_date_c.setTextAlignment(TextAlignment.CENTER);
+                    release_date_c.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                    table1.addCell(release_date_c);
+                
+                    Cell release_date_c1 = new Cell();
+                    try {
+                        release_date_c1.add(new Paragraph((rs.getString("date2"))));
+                    } catch (SQLException ex) {
+                        Logger.getLogger(DisplayRecord.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    release_date_c1.setBorder(Border.NO_BORDER);
+                    release_date_c1.setTextAlignment(TextAlignment.CENTER);
+                    release_date_c1.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                    table1.addCell(release_date_c1);
+                }
+                
+                document.add(table1);
+                
+                document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
+                document.add(new Paragraph("Description").setBold().setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f));
+                try 
+                {
+                    if(rs.getString("description") == null)
+                    {
+                        
+                    }
+                    else
+                    {
+                        document.add(new Paragraph(rs.getString("description")));
+                    }
+                }
+                catch (SQLException ex) {
+                    Logger.getLogger(DisplayRecord.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                document.close();
+                
+                
+                try 
+                {
+                    Desktop.getDesktop().open(new File("Report.pdf"));
+                }
+                catch (IOException ex) 
+                {
+                    Logger.getLogger(DisplayRecord.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }).start();
+        
+    }//GEN-LAST:event_data_report_btnActionPerformed
     
     /**
      * @param args the command line arguments
