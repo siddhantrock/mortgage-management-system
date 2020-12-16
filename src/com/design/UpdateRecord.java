@@ -265,6 +265,11 @@ public class UpdateRecord extends javax.swing.JFrame
 
         back_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         back_btn.setText("Back");
+        back_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                back_btnActionPerformed(evt);
+            }
+        });
         jPanel1.add(back_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(829, 1617, -1, -1));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/resource/16067961-Jewelry-earrings-on-light-silk-background-Stock-Vector-jewellery.jpg"))); // NOI18N
@@ -816,54 +821,137 @@ public class UpdateRecord extends javax.swing.JFrame
                 
                 if(thing_check == true)
                 {
-                    query += " , thing = '" + thing_txt.getText().toUpperCase() + "'";
+                    if(id_check == true)
+                    {
+                        query += " , thing = '" + thing_txt.getText().toUpperCase() + "'";
+                    }
+                    else
+                    {
+                        query += "thing = '" + thing_txt.getText().toUpperCase() + "'";
+                    }
                 }
                 
                 if(type_check == true)
                 {
-                    query += " , type = '" + type_combo.getItemAt(type_combo.getSelectedIndex()).toUpperCase() + "'";
+                    
+                    if(id_check == true || thing_check == true)
+                    {
+                        query += " , type = '" + type_combo.getItemAt(type_combo.getSelectedIndex()).toUpperCase() + "'";
+                    }
+                    else
+                    {
+                        query += "type = '" + type_combo.getItemAt(type_combo.getSelectedIndex()).toUpperCase() + "'";
+                    }
                 }
                 
                 if(n_gold_check == true)
                 {
-                    query += " , n_gold = " + n_gold_combo.getItemAt(n_gold_combo.getSelectedIndex());
+                    
+                    if(id_check == true || thing_check == true || type_check == true)
+                    {
+                        query += " , n_gold = " + n_gold_combo.getItemAt(n_gold_combo.getSelectedIndex());
+                    }
+                    else
+                    {
+                        query += "n_gold = " + n_gold_combo.getItemAt(n_gold_combo.getSelectedIndex());
+                    }
                 }
                 
                 if(n_silver_check == true)
                 {
-                    query += " , n_silver = " + n_silver_combo.getItemAt(n_silver_combo.getSelectedIndex());
+                    
+                    if(id_check == true || thing_check == true || type_check == true || n_gold_check == true)
+                    {
+                        query += " , n_silver = " + n_silver_combo.getItemAt(n_silver_combo.getSelectedIndex());
+                    }
+                    else
+                    {
+                        query += "n_silver = " + n_silver_combo.getItemAt(n_silver_combo.getSelectedIndex());
+                    }
                 }
                 
                 if(n_total_check == true)
                 {
-                    query += " , n_total = " + n_total_combo.getItemAt(n_total_combo.getSelectedIndex());
+                    
+                    if(id_check == true || thing_check == true || type_check == true || n_gold_check == true || n_silver_check == true)
+                    {
+                        query += " , n_total = " + n_total_combo.getItemAt(n_total_combo.getSelectedIndex());
+                    }
+                    else
+                    {
+                        query += "n_total = " + n_total_combo.getItemAt(n_total_combo.getSelectedIndex());
+                    }
                 }
                 
                 if(date_check == true)
                 {
                     SimpleDateFormat abc = new SimpleDateFormat("MM/dd/yyyy");
                     String da = abc.format(date_dtpicker.getDate());
-                    query += " , date1 = '" + da + "'";
+                    
+                    if(id_check == true || thing_check == true || type_check == true || n_gold_check == true || n_silver_check == true || n_total_check == true)
+                    {
+                        query += " , date1 = '" + da + "'";
+                    }
+                    else
+                    {
+                        query += "date1 = '" + da + "'";
+                    }
                 }
                 
                 if(interest_check == true)
                 {
-                    query += " , interest = " + interest_txt.getText();
+                    
+                    if(id_check == true || thing_check == true || type_check == true || n_gold_check == true || n_silver_check == true || n_total_check == true
+                            || date_check == true)
+                    {
+                        query += " , interest = " + interest_txt.getText();
+                    }
+                    else
+                    {
+                        query += "interest = " + interest_txt.getText();
+                    }
                 }
                 
                 if(g_gold_check == true)
                 {
-                    query += " , g_gold = " + g_gold_txt.getText();
+                    
+                    if(id_check == true || thing_check == true || type_check == true || n_gold_check == true || n_silver_check == true || n_total_check == true
+                            || date_check == true || interest_check == true)
+                    {
+                        query += " , g_gold = " + g_gold_txt.getText();
+                    }
+                    else
+                    {
+                        query += "g_gold = " + g_gold_txt.getText();
+                    }
                 }
                 
                 if(g_silver_check == true)
                 {
-                    query += " , g_silver = " + g_silver_txt.getText();
+                    
+                    if(id_check == true || thing_check == true || type_check == true || n_gold_check == true || n_silver_check == true || n_total_check == true
+                            || date_check == true || interest_check == true || g_gold_check == true)
+                    {
+                        query += " , g_silver = " + g_silver_txt.getText();
+                    }
+                    else
+                    {
+                        query += "g_silver = " + g_silver_txt.getText();
+                    }
                 }
                 
                 if(rupess_check == true)
                 {
-                    query += " , rupess = " + rupess_txt.getText();
+                    
+                    if(id_check == true || thing_check == true || type_check == true || n_gold_check == true || n_silver_check == true || n_total_check == true
+                            || date_check == true || interest_check == true || g_gold_check == true || g_silver_check == true)
+                    {
+                        query += " , rupess = " + rupess_txt.getText();
+                    }
+                    else
+                    {
+                        query += "rupess = " + rupess_txt.getText();
+                    }
                 }
                 
                 boolean flag = thing.modifyThing(connect, query, id);
@@ -884,6 +972,10 @@ public class UpdateRecord extends javax.swing.JFrame
         }).start();
         
     }//GEN-LAST:event_update_btnActionPerformed
+
+    private void back_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_btnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_back_btnActionPerformed
 
     /**
      * @param args the command line arguments

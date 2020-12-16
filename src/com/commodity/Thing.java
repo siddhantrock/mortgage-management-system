@@ -284,7 +284,7 @@ public class Thing
         String date_difference_string = "";
         String data[] = new String[2];
         
-        if(table.length() == 10)
+        if(table.length() == 10 || table.length() == 7)
         {
             total_days_difference = (int)((new Date().getTime() - new Date(date).getTime())/(1000*60*60*24));
         }

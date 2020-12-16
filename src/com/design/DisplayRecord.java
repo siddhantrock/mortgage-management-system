@@ -187,7 +187,7 @@ public class DisplayRecord extends javax.swing.JFrame
                 
                 try 
                 {
-                    if(table.length() == 10)
+                    if(table.length() == 10 || table.length() == 7)
                     {
                         do
                         {
@@ -231,7 +231,7 @@ public class DisplayRecord extends javax.swing.JFrame
                     obj[4] = al.get(i).getInterest();
                     
                     
-                    if(table.length() == 10)
+                    if(table.length() == 10 || table.length() == 7)
                     {
                         data = Thing.dateDifference(al.get(i).getDate(), al.get(i).getInterest(), al.get(i).getRupess(),table,"");
                     }
