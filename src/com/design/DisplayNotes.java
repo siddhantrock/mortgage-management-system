@@ -1,6 +1,19 @@
 package com.design;
 
 import com.database.Connect;
+import com.itextpdf.kernel.colors.DeviceCmyk;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.borders.Border;
+import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.property.TextAlignment;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -99,6 +112,11 @@ public class DisplayNotes extends javax.swing.JFrame
         data_report_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
         data_report_btn.setText("Data report");
         data_report_btn.setEnabled(false);
+        data_report_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                data_report_btnActionPerformed(evt);
+            }
+        });
         getContentPane().add(data_report_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(577, 423, -1, -1));
 
         back_btn.setFont(new java.awt.Font("Tempus Sans ITC", 1, 18)); // NOI18N
@@ -221,6 +239,7 @@ public class DisplayNotes extends javax.swing.JFrame
                             {
                                 delete_btn.setEnabled(false);
                                 update_btn.setEnabled(false);
+                                data_report_btn.setEnabled(true);
                             }
                             
                             id = Integer.parseInt(model.getValueAt(model1.getMinSelectionIndex(),0)+"");
@@ -289,6 +308,156 @@ public class DisplayNotes extends javax.swing.JFrame
         }).start();
         
     }//GEN-LAST:event_update_btnActionPerformed
+
+    private void data_report_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_data_report_btnActionPerformed
+
+        new Thread(new Runnable()
+        {
+            public void run()
+            {
+                String file_name = "Note-Report.pdf";
+                ResultSet note_rs = connect.getNotes(table,id);
+                
+                try 
+                {
+                    if(note_rs.next())
+                    {
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(DisplayNotes.this, "Something went wrong please try again later");
+                    }
+                }
+                catch (SQLException ex) 
+                {
+                    Logger.getLogger(DisplayRecord.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                PdfWriter writer=null;
+                
+                try 
+                {
+                  writer = new PdfWriter(file_name);
+                }
+                catch (FileNotFoundException ex) 
+                {
+                   //Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        
+                PdfDocument pdfDoc=new PdfDocument(writer);
+        
+                Document document = new Document(pdfDoc);
+                
+                float columns[] = {500f,500f};
+                Table table1=new Table(columns);
+                
+                Cell id_c = new Cell();
+                id_c.add(new Paragraph("ID").setBold());
+                id_c.setBorder(Border.NO_BORDER);
+                id_c.setTextAlignment(TextAlignment.CENTER);
+                id_c.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                table1.addCell(id_c);
+                
+                Cell id_c1 = new Cell();
+                try {
+                    id_c1.add(new Paragraph(note_rs.getInt("id")+""));
+                } catch (SQLException ex) {
+                    Logger.getLogger(DisplayRecord.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                id_c1.setBorder(Border.NO_BORDER);
+                id_c1.setTextAlignment(TextAlignment.CENTER);
+                id_c1.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                table1.addCell(id_c1);
+                
+                Cell note_c = new Cell();
+                note_c.add(new Paragraph("Note").setBold());
+                note_c.setBorder(Border.NO_BORDER);
+                note_c.setTextAlignment(TextAlignment.CENTER);
+                note_c.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                table1.addCell(note_c);
+                
+                Cell note_c1 = new Cell();
+                try {
+                    note_c1.add(new Paragraph(note_rs.getString("note")+""));
+                } catch (SQLException ex) {
+                    Logger.getLogger(DisplayRecord.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                note_c1.setBorder(Border.NO_BORDER);
+                note_c1.setTextAlignment(TextAlignment.CENTER);
+                note_c1.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                table1.addCell(note_c1);
+                
+                Cell date1_c = new Cell();
+                date1_c.add(new Paragraph("Date").setBold());
+                date1_c.setBorder(Border.NO_BORDER);
+                date1_c.setTextAlignment(TextAlignment.CENTER);
+                date1_c.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                table1.addCell(date1_c);
+                
+                Cell date1_c1 = new Cell();
+                try {
+                    date1_c1.add(new Paragraph(note_rs.getString("date1")+""));
+                } catch (SQLException ex) {
+                    Logger.getLogger(DisplayRecord.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                date1_c1.setBorder(Border.NO_BORDER);
+                date1_c1.setTextAlignment(TextAlignment.CENTER);
+                date1_c1.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                table1.addCell(date1_c1);
+                
+                if(table.equals("notes_1"))
+                {
+                    Cell note1_c = new Cell();
+                    note1_c.add(new Paragraph("Release note").setBold());
+                    note1_c.setBorder(Border.NO_BORDER);
+                    note1_c.setTextAlignment(TextAlignment.CENTER);
+                    note1_c.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                    table1.addCell(note1_c);
+                
+                    Cell note1_c1 = new Cell();
+                    try {
+                        note1_c1.add(new Paragraph(note_rs.getString("note1")+""));
+                    } catch (SQLException ex) {
+                        Logger.getLogger(DisplayRecord.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    note1_c1.setBorder(Border.NO_BORDER);
+                    note1_c1.setTextAlignment(TextAlignment.CENTER);
+                    note1_c1.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                    table1.addCell(note1_c1);
+                    
+                    Cell date2_c = new Cell();
+                    date2_c.add(new Paragraph("Release date").setBold());
+                    date2_c.setBorder(Border.NO_BORDER);
+                    date2_c.setTextAlignment(TextAlignment.CENTER);
+                    date2_c.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                    table1.addCell(date2_c);
+                
+                    Cell date2_c1 = new Cell();
+                    try {
+                        date2_c1.add(new Paragraph(note_rs.getString("date2")+""));
+                    } catch (SQLException ex) {
+                        Logger.getLogger(DisplayRecord.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    date2_c1.setBorder(Border.NO_BORDER);
+                    date2_c1.setTextAlignment(TextAlignment.CENTER);
+                    date2_c1.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                    table1.addCell(date2_c1);
+                }
+                
+                document.add(table1);
+                document.close();
+                try 
+                {
+                    Desktop.getDesktop().open(new File(file_name));
+                }
+                catch (IOException ex) 
+                {
+                    Logger.getLogger(DisplayRecord.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }).start();
+        
+    }//GEN-LAST:event_data_report_btnActionPerformed
 
     /**
      * @param args the command line arguments
