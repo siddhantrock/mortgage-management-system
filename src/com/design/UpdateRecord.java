@@ -311,6 +311,18 @@ public class UpdateRecord extends javax.swing.JFrame
                         thing_txt.setText(rs.getString("thing"));
                         type_combo.setSelectedItem(rs.getString("type"));
                         
+                        if(rs.getString("type").equals("GOLD"))
+                        {
+                            n_silver_combo.setEnabled(false);
+                            g_silver_txt.setEnabled(false);
+                        }
+                        else if(rs.getString("type").equals("SILVER"))
+                        {
+                            n_gold_combo.setEnabled(false);
+                            g_gold_txt.setEnabled(false);
+                        }
+                        n_total_combo.setEnabled(false);
+                        
                         n_gold_combo.setSelectedItem(rs.getInt("n_gold") + "");
                         n_silver_combo.setSelectedItem(rs.getInt("n_silver") + "");
                         n_total_combo.setSelectedItem(rs.getInt("n_total") + "");
