@@ -628,7 +628,7 @@ public class DisplayRecord extends javax.swing.JFrame
                 
                 Cell interest_c1 = new Cell();
                 try {
-                    interest_c1.add(new Paragraph(rs.getInt("interest")+""));
+                    interest_c1.add(new Paragraph(rs.getFloat("interest")+""));
                 } catch (SQLException ex) {
                     Logger.getLogger(DisplayRecord.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -646,7 +646,7 @@ public class DisplayRecord extends javax.swing.JFrame
                 
                 Cell g_gold_c1 = new Cell();
                 try {
-                    g_gold_c1.add(new Paragraph(rs.getInt("g_gold")+""));
+                    g_gold_c1.add(new Paragraph(rs.getFloat("g_gold")+""));
                 } catch (SQLException ex) {
                     Logger.getLogger(DisplayRecord.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -664,7 +664,7 @@ public class DisplayRecord extends javax.swing.JFrame
                 
                 Cell g_silver_c1 = new Cell();
                 try {
-                    g_silver_c1.add(new Paragraph(rs.getInt("n_silver")+""));
+                    g_silver_c1.add(new Paragraph(rs.getFloat("g_silver")+""));
                 } catch (SQLException ex) {
                     Logger.getLogger(DisplayRecord.class.getName()).log(Level.SEVERE, null, ex);
                 }
