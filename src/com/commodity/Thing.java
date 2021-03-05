@@ -286,11 +286,11 @@ public class Thing
         
         if(table.length() == 10 || table.length() == 7)
         {
-            total_days_difference = (int)((new Date().getTime() - new Date(date).getTime())/(1000*60*60*24));
+            total_days_difference = (int)((new Date().getTime() - new Date(date).getTime())/(1000*60*60*24)) + 1;
         }
         else if(table.length() == 12)
         {
-            total_days_difference = (int)((new Date(release_date).getTime() - new Date(date).getTime())/(1000*60*60*24));
+            total_days_difference = (int)((new Date(release_date).getTime() - new Date(date).getTime())/(1000*60*60*24)) + 1;
         }
         
         start_month = Integer.parseInt(date.substring(0, 2));
