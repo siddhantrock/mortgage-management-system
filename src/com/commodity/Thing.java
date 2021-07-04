@@ -18,6 +18,23 @@ public class Thing
     private float g_silver;
     private int rupess;
     private String description;
+    private String pending_date;
+
+    public Thing(int id, String thing, String type, int n_gold, int n_silver, int n_total, String date, float interest, float g_gold, float g_silver, int rupess, String description, String pending_date) {
+        this.id = id;
+        this.thing = thing;
+        this.type = type;
+        this.n_gold = n_gold;
+        this.n_silver = n_silver;
+        this.n_total = n_total;
+        this.date = date;
+        this.interest = interest;
+        this.g_gold = g_gold;
+        this.g_silver = g_silver;
+        this.rupess = rupess;
+        this.description = description;
+        this.pending_date = pending_date;
+    }
 
     public Thing(int id, String thing, String type, int n_gold, int n_silver, int n_total, String date, float interest, float g_gold, float g_silver, int rupess, String description) {
         this.id = id;
@@ -57,7 +74,7 @@ public class Thing
     public Thing(int id) {
         this.id = id;
     }
-
+    
     public Thing(int id, String thing) {
         this.id = id;
         this.thing = thing;
@@ -165,6 +182,14 @@ public class Thing
 
     public void setDescription(String description) {
         this.description = description;
+    }
+    
+    public String getPending_date() {
+        return pending_date;
+    }
+
+    public void setPending_date(String pending_date) {
+        this.pending_date = pending_date;
     }
     
     
@@ -277,16 +302,20 @@ public class Thing
         return flag;
     }
     
-    public static String[] dateDifference(String date , float rate , int rupess , String table , String release_date)
+    public static String[] dateDifference(String date , float rate , int rupess , String table , String release_date , String pending_date)
     {
         int total_days_difference = 0 , days , months = 0 , years = 0 , start_month , start_year;
         float interest=0,si;
         String date_difference_string = "";
         String data[] = new String[2];
         
-        if(table.length() == 10 || table.length() == 7)
+        if(table.length() == 10)
         {
             total_days_difference = (int)((new Date().getTime() - new Date(date).getTime())/(1000*60*60*24)) + 1;
+        }
+        else if(table.length() == 7)
+        {
+            total_days_difference = (int)((new Date(pending_date).getTime() - new Date(date).getTime())/(1000*60*60*24)) + 1;
         }
         else if(table.length() == 12)
         {

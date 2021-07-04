@@ -115,13 +115,19 @@ public class Connect
         return flag;
     }
     
-    public boolean pendingRecord(String table , int id)
+    public boolean pendingRecord(ResultSet rs , String table , int id)
     {
         boolean flag=false;
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        String date = sdf.format(new Date());
         
         try 
         {
-            st.executeUpdate("insert into pending select * from " + table + " where id = " + id);
+            st.executeUpdate("insert into pending values(" + rs.getInt("id") + ",'" + rs.getString("thing") + "','" + rs.getString("type")
+            + "'," + rs.getInt("n_gold") + "," + rs.getInt("n_silver") + "," + rs.getInt("n_total") + ",'" + rs.getString("date1")
+            + "'," + rs.getInt("interest") + "," + rs.getInt("g_gold") + "," + rs.getInt("g_silver") + "," + rs.getInt("rupess") + ",'"
+            + rs.getString("description") + "','" + date + "')");
+            
             st.execute("delete from " + table + " where id = " + id);
             flag = true;
         }
@@ -156,14 +162,14 @@ public class Connect
         
         try 
         {
-            ResultSet rs = st.executeQuery("select * from pending" + " where id = " + id);
+            ResultSet rs = st.executeQuery("select * from pending where id = " + id);
             
             rs.next();
             
             st.executeUpdate("insert into " + table + " values(" + rs.getInt("id") + ",'" + rs.getString("thing") + "','" + rs.getString("type")
             + "'," + rs.getInt("n_gold") + "," + rs.getInt("n_silver") + "," + rs.getInt("n_total") + ",'" + rs.getString("date1")
             + "'," + rs.getFloat("interest") + "," + rs.getFloat("g_gold") + "," + rs.getFloat("g_silver") + "," + rs.getInt("rupess")
-            + "," + rupess + ",'" + date + "','" + rs.getString("description") + "')");
+            + "," + rupess + ",'" + rs.getString("pending_date") + "','" + rs.getString("description") + "')");
             
             st.execute("delete from pending" + " where id = " + id);
             

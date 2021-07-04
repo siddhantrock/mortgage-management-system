@@ -187,7 +187,7 @@ public class DisplayRecord extends javax.swing.JFrame
                 
                 try 
                 {
-                    if(table.length() == 10 || table.length() == 7)
+                    if(table.length() == 10)
                     {
                         do
                         {
@@ -195,6 +195,18 @@ public class DisplayRecord extends javax.swing.JFrame
                                 resultset.getInt("n_gold"),resultset.getInt("n_silver"),resultset.getInt("n_total"),
                                 resultset.getString("date1"),resultset.getFloat("interest"),resultset.getFloat("g_gold"),
                                 resultset.getFloat("g_silver"),resultset.getInt("rupess"),resultset.getString("description"));
+                                al.add(thing);
+                        }while(resultset.next());
+                    }
+                    else if(table.length() == 7)
+                    {
+                        do
+                        {
+                                Thing thing = new Thing(resultset.getInt("id"),resultset.getString("thing"),resultset.getString("type"),
+                                resultset.getInt("n_gold"),resultset.getInt("n_silver"),resultset.getInt("n_total"),
+                                resultset.getString("date1"),resultset.getFloat("interest"),resultset.getFloat("g_gold"),
+                                resultset.getFloat("g_silver"),resultset.getInt("rupess"),resultset.getString("description"),
+                                resultset.getString("pending_date"));
                                 al.add(thing);
                         }while(resultset.next());
                     }
@@ -231,13 +243,17 @@ public class DisplayRecord extends javax.swing.JFrame
                     obj[4] = al.get(i).getInterest();
                     
                     
-                    if(table.length() == 10 || table.length() == 7)
+                    if(table.length() == 10)
                     {
-                        data = Thing.dateDifference(al.get(i).getDate(), al.get(i).getInterest(), al.get(i).getRupess(),table,"");
+                        data = Thing.dateDifference(al.get(i).getDate(), al.get(i).getInterest(), al.get(i).getRupess(),table,"","");
+                    }
+                    else if(table.length() == 7)
+                    {
+                        data = Thing.dateDifference(al.get(i).getDate(), al.get(i).getInterest(), al.get(i).getRupess(),table,"",al.get(i).getPending_date());
                     }
                     else if(table.length() == 12)
                     {
-                        data = Thing.dateDifference(al.get(i).getDate(), al.get(i).getInterest(), al.get(i).getRupess(),table,release_date.get(i));
+                        data = Thing.dateDifference(al.get(i).getDate(), al.get(i).getInterest(), al.get(i).getRupess(),table,release_date.get(i),"");
                     }
                     
                     obj[5] = data[0];
@@ -421,7 +437,25 @@ public class DisplayRecord extends javax.swing.JFrame
         {
             public void run()
             {
-                boolean flag = connect.pendingRecord(table, id);
+                Thing thing = new Thing(id);
+                ResultSet rs = thing.retriveThing(connect, table, false , false);
+                try 
+                {
+                  if(rs.next())
+                  {
+                        
+                  }
+                  else
+                  {
+                      JOptionPane.showMessageDialog(DisplayRecord.this, "Something went wrong please try after some time");
+                      return;
+                  }
+                } 
+                catch (SQLException ex) 
+                {
+                    Logger.getLogger(DisplayRecord.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                boolean flag = connect.pendingRecord(rs, table, id);
                 if(flag == true)
                 {
                     JOptionPane.showMessageDialog(DisplayRecord.this, "Data inerted into pending");
@@ -737,7 +771,27 @@ public class DisplayRecord extends javax.swing.JFrame
                 total_c1.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
                 table1.addCell(total_c1);
                 
-                if(table.length() == 12)
+                if(table.length() == 7)
+                {
+                    Cell pending_date_c = new Cell();
+                    pending_date_c.add(new Paragraph("Pending date").setBold());
+                    pending_date_c.setBorder(Border.NO_BORDER);
+                    pending_date_c.setTextAlignment(TextAlignment.CENTER);
+                    pending_date_c.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                    table1.addCell(pending_date_c);
+                
+                    Cell pending_date_c1 = new Cell();
+                    try {
+                        pending_date_c1.add(new Paragraph(rs.getString("pending_date")));
+                    } catch (SQLException ex) {
+                         Logger.getLogger(DisplayRecord.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    pending_date_c1.setBorder(Border.NO_BORDER);
+                    pending_date_c1.setTextAlignment(TextAlignment.CENTER);
+                    pending_date_c1.setBackgroundColor(com.itextpdf.kernel.colors.Color.convertCmykToRgb(DeviceCmyk.CYAN), .10f);
+                    table1.addCell(pending_date_c1);
+                }
+                else if(table.length() == 12)
                 {
                     Cell release_rupess_c = new Cell();
                     release_rupess_c.add(new Paragraph("Rupess on releasing thing").setBold());
