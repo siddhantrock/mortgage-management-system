@@ -125,7 +125,7 @@ public class Connect
         {
             st.executeUpdate("insert into pending values(" + rs.getInt("id") + ",'" + rs.getString("thing") + "','" + rs.getString("type")
             + "'," + rs.getInt("n_gold") + "," + rs.getInt("n_silver") + "," + rs.getInt("n_total") + ",'" + rs.getString("date1")
-            + "'," + rs.getInt("interest") + "," + rs.getInt("g_gold") + "," + rs.getInt("g_silver") + "," + rs.getInt("rupess") + ",'"
+            + "'," + rs.getFloat("interest") + "," + rs.getFloat("g_gold") + "," + rs.getFloat("g_silver") + "," + rs.getInt("rupess") + ",'"
             + rs.getString("description") + "','" + date + "')");
             
             st.execute("delete from " + table + " where id = " + id);
